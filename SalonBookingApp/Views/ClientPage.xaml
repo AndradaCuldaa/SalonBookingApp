@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalonBookingApp.Views.ClientPage"
+             Title="Lista Clienti">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Clicked="OnItemAdded" />
+    </ContentPage.ToolbarItems>
+
+    <Grid Padding="20">
+        <Label x:Name="LabelEroare" 
+               Text="Doar administratorul poate vedea această listă!" 
+               VerticalOptions="Center" HorizontalOptions="Center" 
+               IsVisible="False" FontSize="18" TextColor="Red" />
+
+        <VerticalStackLayout x:Name="StackListaAdmin" IsVisible="False">
+            <Label Text="Toți clienții înregistrați" FontSize="22" FontAttributes="Bold" Margin="0,0,0,15"/>
+
+            <CollectionView x:Name="CliențiListView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightGray" CornerRadius="10" Margin="0,5" Padding="15">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding FullName}" FontSize="18" FontAttributes="Bold" />
+                                <Label Text="{Binding Phone, StringFormat='Telefon: {0}'}" FontSize="14" />
+                                <Label Text="{Binding Email, StringFormat='Email: {0}'}" FontSize="14" TextColor="Gray" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

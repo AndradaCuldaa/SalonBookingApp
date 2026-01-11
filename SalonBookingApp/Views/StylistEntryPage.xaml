@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalonBookingApp.Views.StylistEntryPage"
+             Title="Detalii Stilist">
+    <VerticalStackLayout Spacing="20" Padding="20">
+        <Label Text="Prenume:" FontAttributes="Bold"/>
+        <Entry Text="{Binding FirstName}" Placeholder="Prenume" />
+
+        <Label Text="Nume:" FontAttributes="Bold"/>
+        <Entry Text="{Binding LastName}" Placeholder="Nume de familie" />
+
+        <Label Text="Specializare:" FontAttributes="Bold"/>
+        <Entry Text="{Binding Specialization}" Placeholder="Ex: Tuns, Vopsit, Masaj" />
+
+        <Button Text="Salvează" Clicked="OnSaveButtonClicked" 
+                BackgroundColor="Purple" TextColor="White"/>
+
+        <Button Text="Șterge" Clicked="OnDeleteButtonClicked" 
+                BackgroundColor="Red" TextColor="White"/>
+    </VerticalStackLayout>
+</ContentPage>

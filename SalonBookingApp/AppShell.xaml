@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SalonBookingApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SalonBookingApp"
+    xmlns:views="clr-namespace:SalonBookingApp.Views"
+    Title="SalonBookingApp">
+    <TabBar>
+        <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate views:AboutPage}"
+        Route="AboutPage" />
+
+    <ShellContent
+        x:Name="TabClienti"
+        Title="Clienți"
+        ContentTemplate="{DataTemplate views:ClientPage}"
+        Route="ClientPage" />
+
+    <ShellContent
+        Title="Stiliști"
+        ContentTemplate="{DataTemplate views:StylistPage}"
+        Route="StylistPage" />
+
+    <ShellContent 
+        Title="Servicii" 
+        ContentTemplate="{DataTemplate views:ServicePage}" 
+        Route="ServicePage" />
+
+    <ShellContent
+            Title="Programări"
+            ContentTemplate="{DataTemplate views:AppointmentPage}"
+            Route="AppointmentPage" />
+    </TabBar>
+</Shell>

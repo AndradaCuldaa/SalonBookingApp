@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalonBookingApp.Views.ClientEntryPage"
+             Title="Detalii Client">
+    <VerticalStackLayout Spacing="20" Padding="20">
+        <Label Text="Nume Client:" FontAttributes="Bold"/>
+        <Entry Text="{Binding Name}" 
+               Placeholder="Introdu numele clientului" />
+
+        <Label Text="Adresa / Email:" FontAttributes="Bold"/>
+        <Entry Text="{Binding Address}" 
+               Placeholder="Introdu adresa" />
+
+        <Button Text="Salvează"
+                Clicked="OnSaveButtonClicked"
+                BackgroundColor="Green"
+                TextColor="White"/>
+
+        <Button Text="Șterge"
+                Clicked="OnDeleteButtonClicked"
+                BackgroundColor="Red"
+                TextColor="White"/>
+    </VerticalStackLayout>
+</ContentPage>

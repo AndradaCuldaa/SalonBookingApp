@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalonBookingApp.Views.StylistPage"
+             Title="Lista Stilisti">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="ToolbarAddStylist" Text="+" Clicked="OnItemAdded" />
+    </ContentPage.ToolbarItems>
+
+    <Grid Padding="10">
+        <CollectionView x:Name="listView" SelectionMode="Single" SelectionChanged="OnSelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding FullName}" FontSize="Medium" FontAttributes="Bold" />
+                        <Label Text="{Binding Specialization}" FontSize="Small" TextColor="Gray" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

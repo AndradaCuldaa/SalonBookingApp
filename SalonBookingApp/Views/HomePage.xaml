@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalonBookingApp.Views.HomePage"
+             Title="SingUp/LogIn">
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" 
+                     HorizontalOptions="FillAndExpand" 
+                     Padding="30" 
+                     Spacing="20">
+
+            <Label Text="Bine ai venit la&#x0a;SalonBooking"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#3F51B5"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,0,0,40" />
+
+            <Button Text="Sign Up (Creează Cont)"
+                    Clicked="OnSignUpClicked"
+                    BackgroundColor="#3F51B5"
+                    TextColor="White"
+                    HeightRequest="60"
+                    CornerRadius="10"/>
+
+            <Button Text="Log In (Autentificare)"
+                    Clicked="OnLoginClicked"
+                    BackgroundColor="#3F51B5"
+                    TextColor="White"
+                    HeightRequest="60"
+                    CornerRadius="10"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

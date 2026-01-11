@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalonBookingApp.Views.RegisterPage"
+             Title="RegisterPage"
+             BackgroundColor="White">
+    <ScrollView>
+        <StackLayout Padding="30" Spacing="15" VerticalOptions="Center">
+
+            <Label Text="Creează un cont nou"
+                   FontSize="24"
+                   TextColor="#3F51B5"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20" />
+
+            <Entry x:Name="EntryNume"
+                   Placeholder="Nume"
+                   PlaceholderColor="Gray"
+                   TextColor="Black" />
+
+            <Entry x:Name="EntryPrenume"
+                   Placeholder="Prenume"
+                   PlaceholderColor="Gray"
+                   TextColor="Black" />
+            <Label Text="Număr de Telefon" TextColor="Gray" />
+            <Entry x:Name="EntryPhone" 
+                    Placeholder="Telefon (ex: 07xx xxx xxx)" 
+                    Keyboard="Telephone" 
+                    TextColor="Black" />
+
+            <Entry x:Name="EntryUsername"
+                   Placeholder="Nume de utilizator"
+                   PlaceholderColor="Gray"
+                   TextColor="Black" />
+
+            <Entry x:Name="EntryEmail"
+                   Placeholder="Email"
+                   Keyboard="Email"
+                   PlaceholderColor="Gray"
+                   TextColor="Black" />
+
+            <Entry x:Name="EntryPassword"
+                   Placeholder="Parola (minim 8 caractere)"
+                   IsPassword="True"
+                   PlaceholderColor="Gray"
+                   TextColor="Black" />
+
+            <Button Text="Sign In (Creează Cont)"
+                    Clicked="OnRegisterClicked"
+                    BackgroundColor="#3F51B5"
+                    TextColor="White"
+                    HeightRequest="50"
+                    CornerRadius="10"
+                    Margin="0,20,0,0" />
+            <Button Text="Înapoi la Login" 
+            Clicked="OnBackClicked" 
+            BackgroundColor="Transparent" 
+            TextColor="Gray" />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

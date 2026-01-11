@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalonBookingApp.Views.AppointmentPage"
+             Title="Programarile Mele">
+    <Grid RowDefinitions="*, Auto" Padding="15">
+
+        <CollectionView x:Name="ListaProgramari" Grid.Row="0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="0,0,0,10">
+                        <Frame CornerRadius="15" HasShadow="True" BorderColor="Transparent" BackgroundColor="White">
+                            <StackLayout Spacing="5">
+                                <Label Text="{Binding Client.FullName, StringFormat='Client: {0}'}" 
+                                       FontAttributes="Bold" 
+                                       TextColor="DarkSlateGray"
+                                       FontSize="14">   
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" 
+                                                     Binding="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UserLogat.IsAdmin}" 
+                                                     Value="False">
+                                            <Setter Property="IsVisible" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Label" 
+                                                     Binding="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UserLogat.IsAdmin}" 
+                                                     Value="True">
+                                            <Setter Property="IsVisible" Value="True" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Label Text="{Binding AppointmentDate, StringFormat='{0:dd MMM yyyy, HH:mm}'}" 
+                                       FontSize="18" FontAttributes="Bold" TextColor="#3F51B5"/>
+
+                                <Label Text="{Binding Service.Name, StringFormat='Serviciu: {0}'}" TextColor="Black"/>
+                                <Label Text="{Binding Service.Price, StringFormat='Preț: {0} RON'}" 
+                                        TextColor="#2ecc71" 
+                                        FontAttributes="Bold"/>
+                                <Label Text="{Binding Stylist.FullName, StringFormat='Stilist: {0}'}" TextColor="Gray"/>
+
+                                <Button Text="Anulează" 
+                                        Clicked="OnDeleteClicked" 
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="#fab1a0" TextColor="#d63031" HeightRequest="35" HorizontalOptions="End"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Grid.Row="1"
+                Text="+ Programare Nouă"
+                Clicked="OnNewAppointmentClicked"
+                BackgroundColor="#3F51B5"
+                TextColor="White"
+                CornerRadius="20"
+                HeightRequest="50"
+                Margin="0,10,0,0"/>
+    </Grid>
+</ContentPage>

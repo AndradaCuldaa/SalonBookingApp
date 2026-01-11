@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalonBookingApp.Views.LoginPage"
+             Title="LoginPage">
+    <StackLayout Padding="30" Spacing="20" VerticalOptions="Center">
+
+        <Label Text="Bine ai revenit!"
+               FontSize="26"
+               TextColor="#3F51B5"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               Margin="0,0,0,30" />
+
+        <Entry x:Name="EntryLoginUsername"
+               Placeholder="Nume de utilizator"
+               PlaceholderColor="Gray"
+               TextColor="Black" />
+
+        <Entry x:Name="EntryLoginPassword"
+               Placeholder="Parola"
+               IsPassword="True"
+               PlaceholderColor="Gray"
+               TextColor="Black" />
+
+        <Button Text="Log In"
+                Clicked="OnLoginClicked"
+                BackgroundColor="#3F51B5"
+                TextColor="White"
+                HeightRequest="50"
+                CornerRadius="10"
+                Margin="0,20,0,0" />
+        <Button x:Name="BtnGoToRegister" 
+            Text="Nu ai cont? Creează unul acum!" 
+            Clicked="OnRegisterClicked" 
+            BackgroundColor="Transparent" 
+            TextColor="Red" 
+            IsVisible="False" />
+
+    </StackLayout>
+</ContentPage>
