@@ -1,22 +1,43 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
              x:Class="SalonBookingApp.Views.StylistEntryPage"
-             Title="Detalii Stilist">
-    <VerticalStackLayout Spacing="20" Padding="20">
-        <Label Text="Prenume:" FontAttributes="Bold"/>
-        <Entry Text="{Binding FirstName}" Placeholder="Prenume" />
+             Title="{x:Static strings:AppResources.StylistDetailsTitle}">
 
-        <Label Text="Nume:" FontAttributes="Bold"/>
-        <Entry Text="{Binding LastName}" Placeholder="Nume de familie" />
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="20">
+            <Label Text="{x:Static strings:AppResources.FirstNamePlaceholder}" FontAttributes="Bold" FontFamily="Lora"/>
+            <Entry Text="{Binding FirstName}" Placeholder="FirstName" />
 
-        <Label Text="Specializare:" FontAttributes="Bold"/>
-        <Entry Text="{Binding Specialization}" Placeholder="Ex: Tuns, Vopsit, Masaj" />
+            <Label Text="{x:Static strings:AppResources.LastNamePlaceholder}" FontAttributes="Bold" FontFamily="Lora"/>
+            <Entry Text="{Binding LastName}" Placeholder="LastName" />
 
-        <Button Text="Salvează" Clicked="OnSaveButtonClicked" 
-                BackgroundColor="Purple" TextColor="White"/>
+            <Label Text="{x:Static strings:AppResources.SpecTitle}" FontAttributes="Bold" FontFamily="Lora"/>
+            <Entry Text="{Binding Specialization}" Placeholder="Română (ex: Coafor)" />
+            <Entry Text="{Binding SpecializationEn}" Placeholder="English (ex: Hair Stylist)" />
 
-        <Button Text="Șterge" Clicked="OnDeleteButtonClicked" 
-                BackgroundColor="Red" TextColor="White"/>
-    </VerticalStackLayout>
+            <Label Text="{x:Static strings:AppResources.LabelAssignServices}" FontAttributes="Bold" Margin="0,10,0,0" FontFamily="Lora"/>
+            <CollectionView x:Name="ServicesCollectionView" HeightRequest="200">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout Padding="5" Spacing="10">
+                            <CheckBox IsChecked="{Binding IsSelected}" Color="#EAB8C1" />
+                            <Label Text="{Binding DisplayName}" VerticalOptions="Center" FontFamily="Lora" />
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="{x:Static strings:AppResources.BtnSave}" 
+                    Clicked="OnSaveButtonClicked" 
+                    BackgroundColor="#EAB8C1" TextColor="White"
+                    CornerRadius="20" FontFamily="Lora"/>
+
+            <Button Text="{x:Static strings:AppResources.BtnDelete}" 
+                    Clicked="OnDeleteButtonClicked" 
+                    BackgroundColor="#FF3B30" TextColor="White"
+                    CornerRadius="20" FontFamily="Lora"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

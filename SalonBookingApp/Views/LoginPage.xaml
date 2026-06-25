@@ -1,41 +1,57 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
              x:Class="SalonBookingApp.Views.LoginPage"
-             Title="LoginPage">
-    <StackLayout Padding="30" Spacing="20" VerticalOptions="Center">
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
 
-        <Label Text="Bine ai revenit!"
-               FontSize="26"
-               TextColor="#3F51B5"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"
-               Margin="0,0,0,30" />
+    <Grid>
+        <Image Source="salon.jpeg" Aspect="AspectFill" InputTransparent="True"/>
 
-        <Entry x:Name="EntryLoginUsername"
-               Placeholder="Nume de utilizator"
-               PlaceholderColor="Gray"
-               TextColor="Black" />
+        <VerticalStackLayout VerticalOptions="Center" Margin="30,0">
+            <Border BackgroundColor="White" Padding="25" StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="30" />
+                </Border.StrokeShape>
 
-        <Entry x:Name="EntryLoginPassword"
-               Placeholder="Parola"
-               IsPassword="True"
-               PlaceholderColor="Gray"
-               TextColor="Black" />
+                <VerticalStackLayout Spacing="20">
+                    <Grid ColumnDefinitions="*, *" ColumnSpacing="10" Margin="0,0,0,10">
+                        <Button Text="{x:Static strings:AppResources.LoginTitle}" 
+                                Grid.Column="0" 
+                                CornerRadius="15" HeightRequest="45"
+                                BackgroundColor="#EAB8C1" TextColor="White" 
+                                FontFamily="Lora"/>
 
-        <Button Text="Log In"
-                Clicked="OnLoginClicked"
-                BackgroundColor="#3F51B5"
-                TextColor="White"
-                HeightRequest="50"
-                CornerRadius="10"
-                Margin="0,20,0,0" />
-        <Button x:Name="BtnGoToRegister" 
-            Text="Nu ai cont? Creează unul acum!" 
-            Clicked="OnRegisterClicked" 
-            BackgroundColor="Transparent" 
-            TextColor="Red" 
-            IsVisible="False" />
+                        <Button Text="{x:Static strings:AppResources.SignUpTitle}" 
+                                Grid.Column="1" 
+                                Clicked="OnRegisterClicked"
+                                CornerRadius="15" HeightRequest="45"
+                                BackgroundColor="Transparent" TextColor="Gray" 
+                                FontFamily="Lora"/>
+                    </Grid>
 
-    </StackLayout>
+                    <Entry x:Name="EntryLoginUsername" 
+                           Placeholder="{x:Static strings:AppResources.UserPlaceholder}" 
+                           PlaceholderColor="Gray" TextColor="Black" HeightRequest="50" />
+
+                    <Entry x:Name="EntryLoginPassword" 
+                           Placeholder="{x:Static strings:AppResources.PassPlaceholder}" 
+                           IsPassword="True" PlaceholderColor="Gray" TextColor="Black" HeightRequest="50" />
+
+                    <Label Text="{x:Static strings:AppResources.ForgotPass}" 
+                           TextColor="Gray" 
+                           HorizontalOptions="Center" FontSize="12" 
+                           FontFamily="Lora"/>
+
+                    <Button Text="{x:Static strings:AppResources.LoginTitle}" 
+                            Clicked="OnLoginClicked"
+                            BackgroundColor="#EAB8C1" TextColor="White"
+                            CornerRadius="20" HeightRequest="50" 
+                            FontAttributes="Bold" 
+                            FontFamily="Lora"/>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>

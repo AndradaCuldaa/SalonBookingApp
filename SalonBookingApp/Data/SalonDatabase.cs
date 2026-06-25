@@ -1,201 +1,276 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using SQLite;
-using SalonBookingApp.Models; 
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using SQLiteNetExtensionsAsync.Extensions;
+using Supabase;
+using SalonBookingApp.Models;
+using SupabaseClient = Supabase.Client;
+using MyClientModel = SalonBookingApp.Models.Client;
 
 namespace SalonBookingApp.Data
 {
-    public class SalonDatabase
+    public partial class SalonDatabase
     {
-        readonly SQLiteAsyncConnection _database;
+        private readonly SupabaseClient _client;
 
-        public SalonDatabase(string dbPath)
+        public SalonDatabase(SupabaseClient client)
         {
-            
-            _database = new SQLiteAsyncConnection(dbPath);
+            _client = client;
         }
 
-        async Task Init()
+        public async Task<MyClientModel> GetClientByLoginAsync(string username, string password)
         {
-            await _database.CreateTableAsync<Client>();
-            await _database.CreateTableAsync<Stylist>();
-            await _database.CreateTableAsync<Service>();
-            await _database.CreateTableAsync<Appointment>();
-            await _database.CreateTableAsync<AppointmentService>();
+            var response = await _client
+                .From<MyClientModel>()
+                .Where(x => x.Username == username)
+                .Where(x => x.Password == password)
+                .Get();
 
-            await SeedDatabaseAsync();
+            return response.Models.FirstOrDefault();
         }
 
-      
-
-        public async Task<List<Client>> GetClientsAsync()
+        public async Task<Stylist> GetStylistByLoginAsync(string username, string password)
         {
-            await Init(); 
-            return await _database.Table<Client>().ToListAsync();
+            var response = await _client
+                .From<Stylist>()
+                .Where(x => x.Username == username)
+                .Where(x => x.Password == password)
+                .Get();
+
+            return response.Models.FirstOrDefault();
         }
 
-        public async Task<int> SaveClientAsync(Client client)
+        public async Task<List<MyClientModel>> GetClientsAsync()
         {
-            await Init(); 
+            var response = await _client.From<MyClientModel>().Get();
+            return response.Models;
+        }
+
+        public async Task<MyClientModel> SaveClientAsync(MyClientModel client)
+        {
             if (client.ID != 0)
-                return await _database.UpdateAsync(client);
+            {
+                var response = await _client.From<MyClientModel>().Update(client);
+                return response.Model;
+            }
             else
-                return await _database.InsertAsync(client);
+            {
+                var response = await _client.From<MyClientModel>().Insert(client);
+                return response.Model;
+            }
         }
 
-        public async Task<int> DeleteClientAsync(Client client)
+        public async Task DeleteClientAsync(MyClientModel client)
         {
-            await Init();
-            return await _database.DeleteAsync(client);
+            await _client.From<MyClientModel>().Delete(client);
         }
 
         public async Task<List<Stylist>> GetStylistsAsync()
         {
-            await Init();
-            return await _database.Table<Stylist>().ToListAsync();
+            var response = await _client.From<Stylist>().Get();
+            return response.Models;
         }
 
-        public async Task<int> SaveStylistAsync(Stylist stylist)
+        public async Task<Stylist> SaveStylistAsync(Stylist stylist)
         {
-            await Init();
             if (stylist.ID != 0)
-                return await _database.UpdateAsync(stylist);
+            {
+                var response = await _client.From<Stylist>().Update(stylist);
+                return response.Model;
+            }
             else
-                return await _database.InsertAsync(stylist);
+            {
+                var response = await _client.From<Stylist>().Insert(stylist);
+                return response.Model;
+            }
         }
 
-        public async Task<int> DeleteStylistAsync(Stylist stylist)
+        public async Task UpdateStylistAsync(Stylist stylist)
         {
-            await Init();
-            return await _database.DeleteAsync(stylist);
+            await _client.From<Stylist>().Update(stylist);
         }
 
-
+        public async Task DeleteStylistAsync(Stylist stylist)
+        {
+            await _client.From<Stylist>().Delete(stylist);
+        }
 
         public async Task<List<Service>> GetServicesAsync()
         {
-            await Init();
-            return await _database.Table<Service>().ToListAsync();
+            var response = await _client.From<Service>().Get();
+            return response.Models;
         }
 
-        public async Task<int> SaveServiceAsync(Service service)
+        public async Task<Service> SaveServiceAsync(Service service)
         {
-            await Init();
             if (service.ID != 0)
-                return await _database.UpdateAsync(service);
+            {
+                var response = await _client.From<Service>().Update(service);
+                return response.Model;
+            }
             else
-                return await _database.InsertAsync(service);
+            {
+                var response = await _client.From<Service>().Insert(service);
+                return response.Model;
+            }
         }
 
-        public async Task<int> DeleteServiceAsync(Service service)
+        public async Task DeleteServiceAsync(Service service)
         {
-            await Init();
-            return await _database.DeleteAsync(service);
+            await _client.From<Service>().Delete(service);
         }
 
         public async Task<List<Appointment>> GetAppointmentsAsync()
         {
-            await Init();
+            var response = await _client.From<Appointment>().Get();
+            var appointments = response.Models;
 
-          
-            var appointments = await _database.Table<Appointment>().ToListAsync();
-
-            
-            foreach (var a in appointments)
+            foreach (var app in appointments)
             {
-                if (a.ClientID != 0)
+                try
                 {
-                    a.Client = await _database.Table<Client>()
-                                    .Where(c => c.ID == a.ClientID)
-                                    .FirstOrDefaultAsync();
-                }
+                    var sResponse = await _client.From<Stylist>().Where(x => x.ID == app.StylistID).Single();
+                    app.Stylist = sResponse;
 
-                if (a.StylistID != 0)
-                {
-                    a.Stylist = await _database.Table<Stylist>()
-                                     .Where(s => s.ID == a.StylistID)
-                                     .FirstOrDefaultAsync();
+                    var serResponse = await _client.From<Service>().Where(x => x.ID == app.ServiceID).Single();
+                    app.Service = serResponse;
                 }
+                catch { }
             }
 
             return appointments;
         }
-        public async Task<int> SaveAppointmentAsync(Appointment appointment)
+
+        public async Task<Appointment> SaveAppointmentAsync(Appointment appointment)
         {
-            await Init();
             if (appointment.ID != 0)
             {
-                return await _database.UpdateAsync(appointment);
+                var response = await _client.From<Appointment>().Update(appointment);
+                return response.Model;
             }
             else
             {
-                return await _database.InsertAsync(appointment);
+                var response = await _client.From<Appointment>().Insert(appointment);
+                return response.Model;
             }
         }
 
-        public async Task<int> DeleteAppointmentAsync(Appointment appointment)
+        public async Task DeleteAppointmentAsync(Appointment appointment)
         {
-            await Init();
-            return await _database.DeleteAsync(appointment);
-        }
-        public Task<List<Appointment>> GetAppointmentsWithChildrenAsync()
-        {
-            
-            return _database.GetAllWithChildrenAsync<Appointment>(recursive: true);
+            await _client.From<Appointment>().Delete(appointment);
         }
 
-        public async Task SeedDatabaseAsync()
+        public async Task<List<Review>> GetReviewsForStylistAsync(int stylistId)
         {
-            var existingStylists = await _database.Table<Stylist>().ToListAsync();
-            if (existingStylists.Count == 0)
+            var response = await _client.From<Review>().Where(x => x.StylistID == stylistId).Get();
+            return response.Models;
+        }
+
+        public async Task<Review> SaveReviewAsync(Review review)
+        {
+            if (review.ID != 0)
             {
-                var officialStylists = new List<Stylist>
-        {
-            new Stylist { FirstName = "Ana", LastName = "Popescu", Specialization = "Coafură" , Username = "ana", Password = "12345678",},
-            new Stylist { FirstName = "Andrei", LastName = "Ionescu", Specialization = "Barber Shop" },
-            new Stylist { FirstName = "Elena", LastName = "Vasilescu", Specialization = "Manichiură" },
-            new Stylist { FirstName = "Simona", LastName = "Marin", Specialization = "Cosmetică" },
-            new Stylist { FirstName = "Andrada", LastName = "Popa", Specialization = "Machiaj" }
-        };
-                foreach (var s in officialStylists) await _database.InsertAsync(s);
+                var response = await _client.From<Review>().Update(review);
+                return response.Model;
             }
-           
-            var existingServices = await _database.Table<Service>().ToListAsync();
-            if (existingServices.Count == 0)
+            else
             {
-                var officialServices = new List<Service>
+                var response = await _client.From<Review>().Insert(review);
+                return response.Model;
+            }
+        }
+
+        public async Task<List<ClientPackage>> GetPackagesForClientAsync(int clientId)
         {
-            
-            new Service { Name = "Tuns Damă", Category = "Coafură", Price = 80, Duration = 45 },
-            new Service { Name = "Styling", Category = "Coafură", Price = 100, Duration = 60 },
-            new Service { Name = "Vopsit clasic", Category = "Coafură", Price = 200, Duration = 120 },
-            new Service { Name = "Balayage", Category = "Coafură", Price = 450, Duration = 240 },
-            new Service { Name = "Ombre", Category = "Coafură", Price = 400, Duration = 210 },
+            var response = await _client.From<ClientPackage>().Where(x => x.ClientID == clientId).Get();
+            return response.Models;
+        }
 
-            
-            new Service { Name = "Tuns bărbați", Category = "Barber Shop", Price = 50, Duration = 30 },
-            new Service { Name = "Îngrijirea bărbii", Category = "Barber Shop", Price = 30, Duration = 20 },
+        public async Task<ClientPackage> SaveClientPackageAsync(ClientPackage package)
+        {
+            if (package.ID != 0)
+            {
+                var response = await _client.From<ClientPackage>().Update(package);
+                return response.Model;
+            }
+            else
+            {
+                var response = await _client.From<ClientPackage>().Insert(package);
+                return response.Model;
+            }
+        }
 
-            
-            new Service { Name = "Manichiură semipermanentă", Category = "Unghii", Price = 90, Duration = 60 },
-            new Service { Name = "Construcție gel", Category = "Unghii", Price = 150, Duration = 120 },
-            new Service { Name = "Pedichiură", Category = "Unghii", Price = 100, Duration = 60 },
+        public async Task DeleteClientPackageAsync(ClientPackage package)
+        {
+            await _client.From<ClientPackage>().Delete(package);
+        }
 
-            
-            new Service { Name = "Tratamente faciale", Category = "Cosmetică", Price = 180, Duration = 90 },
-            new Service { Name = "Pensat și vopsit sprâncene", Category = "Cosmetică", Price = 60, Duration = 30 },
+        public async Task<List<Stylist>> GetStylistsForServiceAsync(int serviceId)
+        {
+            var links = await _client.From<StylistService>().Where(x => x.ServiceID == serviceId).Get();
+            var ids = links.Models.Select(x => x.StylistID).ToList();
 
-            
-            new Service { Name = "Machiaj de seară", Category = "Machiaj", Price = 250, Duration = 60 },
-            new Service { Name = "Machiaj de mireasă", Category = "Machiaj", Price = 400, Duration = 90 }
-        };
+            var stylists = await _client.From<Stylist>().Get();
+            return stylists.Models.Where(x => ids.Contains(x.ID)).ToList();
+        }
 
-                foreach (var s in officialServices)
-                    await _database.InsertAsync(s);
+        public async Task<List<Service>> GetServicesForStylistAsync(int stylistId)
+        {
+            var links = await _client.From<StylistService>().Where(x => x.StylistID == stylistId).Get();
+            var serviceIds = links.Models.Select(x => x.ServiceID).ToList();
+
+            var allServices = await GetServicesAsync();
+            return allServices.Where(s => serviceIds.Contains(s.ID)).ToList();
+        }
+
+        public async Task UpdateStylistServicesAsync(int stylistId, List<Service> selectedServices)
+        {
+            await _client.From<StylistService>().Where(x => x.StylistID == stylistId).Delete();
+
+            var newLinks = selectedServices.Select(s => new StylistService
+            {
+                StylistID = stylistId,
+                ServiceID = s.ID
+            }).ToList();
+
+            if (newLinks.Any())
+            {
+                await _client.From<StylistService>().Insert(newLinks);
+            }
+        }
+
+        public async Task<Stylist> GetStylistWithServicesAsync(int stylistId)
+        {
+            var response = await _client.From<Stylist>().Where(x => x.ID == stylistId).Single();
+            return response;
+        }
+
+        public async Task<WorkScheduleDb> GetWorkScheduleAsync(int stylistId, DateTime date)
+        {
+            try
+            {
+                var response = await _client.From<WorkScheduleDb>()
+                    .Where(x => x.StylistId == stylistId && x.ScheduleDate == date)
+                    .Single();
+                return response;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public async Task<WorkScheduleDb> SaveWorkScheduleAsync(WorkScheduleDb schedule)
+        {
+            if (schedule.Id != 0)
+            {
+                var response = await _client.From<WorkScheduleDb>().Update(schedule);
+                return response.Model;
+            }
+            else
+            {
+                var response = await _client.From<WorkScheduleDb>().Insert(schedule);
+                return response.Model;
             }
         }
 

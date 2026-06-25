@@ -1,36 +1,133 @@
+using CommunityToolkit.Maui.Extensions;
+using CommunityToolkit.Maui.Views;
+using Microsoft.Maui.Controls.Shapes;
 using SalonBookingApp.Models;
+using SalonBookingApp.Resources.Strings;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace SalonBookingApp.Views;
 
 public partial class AppointmentListPage : ContentPage
 {
-	public AppointmentListPage()
-	{
-		InitializeComponent();
-	}
+    public AppointmentListPage()
+    {
+        InitializeComponent();
+    }
+
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-       
-        listView.ItemsSource = await App.Database.GetAppointmentsAsync();
-    }
 
-    async void OnItemAdded(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new AppointmentPage
+        try
         {
-            BindingContext = new Appointment()
-        });
+            var programari = await App.Database.GetAppointmentsAsync();
+
+            if (programari != null)
+            {
+                listView.ItemsSource = programari.OrderByDescending(x => x.AppointmentDate).ToList();
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Error loading appointments: {ex.Message}");
+            await ArataNotificareRoz(AppResources.ErrorTitle, true);
+        }
     }
 
-    async void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)
+    private async void OnItemAdded(object sender, EventArgs e)
     {
-        if (e.SelectedItem != null)
+        await Navigation.PushAsync(new NewAppointmentPage());
+    }
+
+    private async void OnListItemSelected(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault() is Appointment selectedAppointment)
         {
             await Navigation.PushAsync(new AppointmentPage
             {
-                BindingContext = e.SelectedItem as Appointment
+                BindingContext = selectedAppointment
             });
+
+            if (sender is CollectionView cv)
+            {
+                cv.SelectedItem = null;
+            }
         }
+    }
+
+    private async Task ArataNotificareRoz(string mesaj, bool esteEroare = false)
+    {
+        var bgColor = esteEroare ? Color.FromArgb("#FF3B30") : Color.FromArgb("#EAB8C1");
+
+        var border = new Border
+        {
+            BackgroundColor = bgColor,
+            StrokeThickness = 0,
+            Padding = new Thickness(20, 15, 20, 15),
+            Margin = new Thickness(0),
+            HorizontalOptions = LayoutOptions.Fill,
+            VerticalOptions = LayoutOptions.Start,
+            Opacity = 0,
+            StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(0, 0, 15, 15) },
+            Shadow = new Shadow { Brush = Colors.Black, Offset = new Point(0, 4), Opacity = 0.2f, Radius = 5 },
+            ZIndex = 999
+        };
+
+        var gridContent = new Grid();
+        gridContent.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
+        gridContent.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+        var labelMesaj = new Label
+        {
+            Text = mesaj,
+            TextColor = Colors.White,
+            FontSize = 16,
+            FontAttributes = FontAttributes.Bold,
+            VerticalOptions = LayoutOptions.Center
+        };
+        gridContent.Children.Add(labelMesaj);
+        Grid.SetColumn(labelMesaj, 0);
+
+        var labelClose = new Label
+        {
+            Text = "✕",
+            TextColor = Colors.White,
+            FontSize = 20,
+            FontAttributes = FontAttributes.Bold,
+            VerticalOptions = LayoutOptions.Center
+        };
+        var tapGesture = new TapGestureRecognizer();
+        tapGesture.Tapped += async (s, e) => { await border.FadeTo(0, 200); };
+        labelClose.GestureRecognizers.Add(tapGesture);
+        gridContent.Children.Add(labelClose);
+        Grid.SetColumn(labelClose, 1);
+
+        border.Content = gridContent;
+
+        if (!(this.Content is Grid wrapperGrid && wrapperGrid.StyleId == "NotificareWrapper"))
+        {
+            var continutVechi = this.Content;
+            wrapperGrid = new Grid { StyleId = "NotificareWrapper" };
+            wrapperGrid.Children.Add(continutVechi);
+            this.Content = wrapperGrid;
+        }
+
+        var gridPrincipal = (Grid)this.Content;
+        gridPrincipal.Children.Add(border);
+
+        border.TranslationY = -150;
+        await border.FadeTo(1, 100);
+        await border.TranslateTo(0, 0, 400, Easing.SpringOut);
+
+        await Task.Delay(3000);
+
+        if (border.Opacity > 0)
+        {
+            await border.TranslateTo(0, -150, 300, Easing.CubicIn);
+            await border.FadeTo(0, 100);
+        }
+
+        gridPrincipal.Children.Remove(border);
     }
 }

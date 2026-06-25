@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
+             x:Class="SalonBookingApp.Views.PackageDetailsPage"
+             NavigationPage.HasNavigationBar="True"
+             BackgroundColor="White">
+
+    <Grid RowDefinitions="Auto, *">
+        <Border Grid.Row="0" 
+                BackgroundColor="#EAB8C1" 
+                StrokeThickness="0" 
+                Padding="25,40,25,30">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="0,0,30,30" />
+            </Border.StrokeShape>
+
+            <VerticalStackLayout Spacing="5">
+                <Label x:Name="LabelNumePachet" 
+                       FontSize="26" 
+                       FontAttributes="Bold" 
+                       TextColor="White" 
+                       FontFamily="Lora"/>
+                <Label x:Name="LabelValabilitate" 
+                       FontSize="14" 
+                       TextColor="#FFF0F2" 
+                       FontFamily="Lora"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <ScrollView Grid.Row="1" Padding="25,20">
+            <VerticalStackLayout x:Name="ContainerServicii" Spacing="20">
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

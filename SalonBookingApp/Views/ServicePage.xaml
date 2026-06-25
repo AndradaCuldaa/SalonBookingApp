@@ -1,21 +1,78 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:SalonBookingApp.Views"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
              x:Class="SalonBookingApp.Views.ServicePage"
-             Title="Lista Servicii">
+             Title="Servicii"
+             BackgroundColor="#F2F2F7">
+
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="ToolbarAddService" Text="+" Clicked="OnItemAdded" />
     </ContentPage.ToolbarItems>
 
-    <Grid Padding="10">
-        <CollectionView x:Name="listView" SelectionMode="Single" SelectionChanged="OnSelectionChanged">
+    <Grid RowDefinitions="Auto, *">
+
+        <VerticalStackLayout Grid.Row="0" Padding="20,15" Spacing="5">
+
+            <Label Text="{x:Static strings:AppResources.ChooseTreat}"
+                   FontSize="20" 
+                   TextColor="#8E8E93" FontFamily="Lora" />
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="1" 
+                        x:Name="listView" 
+                        SelectionMode="Single" 
+                        SelectionChanged="OnSelectionChanged">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="0" />
+            </CollectionView.ItemsLayout>
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10">
-                        <Label Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold" />
-                        <Label Text="{Binding Price, StringFormat='Preț: {0} RON'}" FontSize="Small" TextColor="Gray" />
-                        <Label Text="{Binding Duration, StringFormat='Durata: {0} min'}" FontSize="Small" TextColor="Gray" />
-                    </StackLayout>
+                    <Grid Padding="15,6">
+                        <Frame BackgroundColor="White" 
+                               CornerRadius="15" 
+                               HasShadow="True" 
+                               Padding="15" 
+                               BorderColor="#FFB7CE">
+
+                            <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+
+                                <Label Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding DisplayName}" 
+                                       FontSize="20" 
+                                       FontAttributes="Bold" 
+                                       TextColor="#1C1C1E" FontFamily="Lora" />
+
+                                <Label Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding Price, StringFormat='{0} RON'}" 
+                                       TextColor="#FFB7CE" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold" FontFamily="Lora" />
+
+                                <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Spacing="5" Margin="0,5,0,0">
+                                    <Label Text="🕒" FontSize="12" VerticalOptions="Center"/>
+                                    <Label Text="{Binding Duration, StringFormat='{0} min'}" 
+                                           TextColor="#8E8E93" 
+                                           FontSize="14" FontFamily="Lora" />
+                                </HorizontalStackLayout>
+
+                                <Label Grid.Row="1" Grid.Column="1" 
+                                       Text="→" 
+                                       TextColor="#FFB7CE" 
+                                       FontSize="24" 
+                                        Padding="15,5,0,5"
+                                        HorizontalOptions="End" 
+                                        VerticalOptions="Center">    
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnBookArrowTapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

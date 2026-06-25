@@ -1,60 +1,257 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
+             xmlns:models="clr-namespace:SalonBookingApp.Models"
              x:Class="SalonBookingApp.Views.AppointmentPage"
-             Title="Programarile Mele">
-    <Grid RowDefinitions="*, Auto" Padding="15">
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#EAB8C1">
 
-        <CollectionView x:Name="ListaProgramari" Grid.Row="0">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="0,0,0,10">
-                        <Frame CornerRadius="15" HasShadow="True" BorderColor="Transparent" BackgroundColor="White">
-                            <StackLayout Spacing="5">
-                                <Label Text="{Binding Client.FullName, StringFormat='Client: {0}'}" 
-                                       FontAttributes="Bold" 
-                                       TextColor="DarkSlateGray"
-                                       FontSize="14">   
-                                    <Label.Triggers>
-                                        <DataTrigger TargetType="Label" 
-                                                     Binding="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UserLogat.IsAdmin}" 
-                                                     Value="False">
-                                            <Setter Property="IsVisible" Value="False" />
-                                        </DataTrigger>
-                                        <DataTrigger TargetType="Label" 
-                                                     Binding="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UserLogat.IsAdmin}" 
-                                                     Value="True">
-                                            <Setter Property="IsVisible" Value="True" />
-                                        </DataTrigger>
-                                    </Label.Triggers>
-                                </Label>
-                                <Label Text="{Binding AppointmentDate, StringFormat='{0:dd MMM yyyy, HH:mm}'}" 
-                                       FontSize="18" FontAttributes="Bold" TextColor="#3F51B5"/>
+    <Grid>
+        <Image Source="salon.jpeg" 
+               Aspect="AspectFill" 
+               HorizontalOptions="Fill" 
+               VerticalOptions="Fill"/>
 
-                                <Label Text="{Binding Service.Name, StringFormat='Serviciu: {0}'}" TextColor="Black"/>
-                                <Label Text="{Binding Service.Price, StringFormat='Preț: {0} RON'}" 
-                                        TextColor="#2ecc71" 
-                                        FontAttributes="Bold"/>
-                                <Label Text="{Binding Stylist.FullName, StringFormat='Stilist: {0}'}" TextColor="Gray"/>
+        <Grid RowDefinitions="*, Auto" Padding="0">
+            <ScrollView Grid.Row="0">
+                <VerticalStackLayout Spacing="0">
+                    <VerticalStackLayout Spacing="15" Margin="0,20,0,10">
+                        <Label Text="{x:Static strings:AppResources.MyActivePackages}" 
+                               x:Name="TitluPachete"
+                               IsVisible="False"
+                               FontSize="18" 
+                               FontAttributes="Bold" 
+                               TextColor="White" 
+                               Margin="25,0,0,0" 
+                               FontFamily="Lora"/>
 
-                                <Button Text="Anulează" 
-                                        Clicked="OnDeleteClicked" 
-                                        CommandParameter="{Binding .}"
-                                        BackgroundColor="#fab1a0" TextColor="#d63031" HeightRequest="35" HorizontalOptions="End"/>
-                            </StackLayout>
-                        </Frame>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                        <CollectionView x:Name="ListaPachete" 
+                                        IsVisible="False"
+                                        HeightRequest="140"
+                                        SelectionMode="None">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="15" />
+                            </CollectionView.ItemsLayout>
 
-        <Button Grid.Row="1"
-                Text="+ Programare Nouă"
-                Clicked="OnNewAppointmentClicked"
-                BackgroundColor="#3F51B5"
-                TextColor="White"
-                CornerRadius="20"
-                HeightRequest="50"
-                Margin="0,10,0,0"/>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="models:ClientPackage">
+                                    <Border BackgroundColor="#EAB8C1"
+                                            Stroke="Transparent"
+                                            Padding="15"
+                                            WidthRequest="260"
+                                            Margin="25,0,0,10">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="15" />
+                                        </Border.StrokeShape>
+                                        <Border.Shadow>
+                                            <Shadow Brush="Black" Offset="0,4" Opacity="0.15" Radius="8" />
+                                        </Border.Shadow>
+
+                                        <Grid RowDefinitions="Auto, *, Auto">
+                                            <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
+                                                <Label Grid.Column="0" Text="{Binding PackageName}" FontSize="18" FontAttributes="Bold" TextColor="White" FontFamily="Lora"/>
+
+                                                <Label Grid.Column="1"
+                                                       Text="{x:Static strings:AppResources.BtnCancel}" 
+                                                       TextColor="#FF3B30" 
+                                                       FontSize="12"
+                                                       FontAttributes="Bold"
+                                                       TextDecorations="Underline"
+                                                       VerticalOptions="Start"
+                                                       HorizontalOptions="End"
+                                                       FontFamily="Lora"
+                                                       IsVisible="{Binding IsUnused}">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="OnCancelPackageTapped" CommandParameter="{Binding .}" />
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Grid>
+
+                                            <Label Grid.Row="1" FontSize="12" TextColor="#FFF0F2" VerticalOptions="Start" FontFamily="Lora" Margin="0,2,0,0">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{x:Static strings:AppResources.ExpiresOn}" />
+                                                        <Span Text=" " />
+                                                        <Span Text="{Binding ExpiryDate, StringFormat='{0:dd MMM yyyy}'}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Button Grid.Row="2" Text="{x:Static strings:AppResources.BtnUsePackage}" 
+                                                    Clicked="OnFolosestePachetClicked"
+                                                    CommandParameter="{Binding .}"
+                                                    BackgroundColor="White" TextColor="#EAB8C1" 
+                                                    FontAttributes="Bold" CornerRadius="10" 
+                                                    HeightRequest="35" FontFamily="Lora" Padding="0"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                        <BoxView HeightRequest="1" BackgroundColor="White" Opacity="0.5" Margin="25,10,25,20" x:Name="LinieDespartitoare" IsVisible="False"/>
+
+                        <Label Text="{x:Static strings:AppResources.UpcomingAppointments}" 
+                               x:Name="TitluViitoare"
+                               IsVisible="False"
+                               FontSize="18" 
+                               FontAttributes="Bold" 
+                               TextColor="White" 
+                               Margin="25,0,0,0" 
+                               FontFamily="Lora"/>
+                    </VerticalStackLayout>
+
+                    <CollectionView x:Name="ListaProgramari" 
+                                    SelectionMode="None"
+                                    BackgroundColor="Transparent">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="20" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Appointment">
+                                <Grid Padding="25,0">
+                                    <Border BackgroundColor="White"
+                                            Stroke="#EAB8C1"
+                                            StrokeThickness="1.5"
+                                            Padding="15">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="20" />
+                                        </Border.StrokeShape>
+                                        <Border.Shadow>
+                                            <Shadow Brush="Black" Offset="0,6" Opacity="0.1" Radius="12" />
+                                        </Border.Shadow>
+
+                                        <Grid ColumnDefinitions="75, *, Auto" ColumnSpacing="15">
+                                            <VerticalStackLayout Grid.Column="0" VerticalOptions="Center" Spacing="-2">
+                                                <Label Text="{Binding AppointmentDate, StringFormat='{0:dd}'}" FontSize="34" FontAttributes="Bold" TextColor="#333333" HorizontalOptions="Center" FontFamily="Lora"/>
+                                                <Label Text="{Binding AppointmentDate, StringFormat='{0:MMMM}'}" FontSize="11" TextColor="#EAB8C1" FontAttributes="Bold" TextTransform="Uppercase" HorizontalOptions="Center" FontFamily="Lora" Margin="0,-5,0,0"/>
+                                            </VerticalStackLayout>
+
+                                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                                <Label Text="{Binding AppointmentDate, StringFormat='{0:HH:mm}'}" FontSize="13" TextColor="Gray" FontFamily="Lora"/>
+                                                <Label Text="{Binding Service.DisplayName}" FontSize="16" FontAttributes="Bold" TextColor="Black" TextTransform="Uppercase" CharacterSpacing="1" FontFamily="Lora" MaxLines="1"/>
+
+                                                <HorizontalStackLayout Spacing="8">
+                                                    <Label Text="✧" TextColor="#D4AF37" FontSize="14" VerticalOptions="Center"/>
+                                                    <Label Text="{Binding Stylist.FullName}" FontSize="12" TextColor="Gray" FontFamily="Lora" VerticalOptions="Center"/>
+
+                                                    <Border BackgroundColor="#FFF0F2" Padding="6,2" StrokeThickness="0">
+                                                        <Border.StrokeShape>
+                                                            <RoundRectangle CornerRadius="5"/>
+                                                        </Border.StrokeShape>
+                                                        <Label Text="{Binding Service.Price, StringFormat='{0} RON'}" FontSize="10" TextColor="#EAB8C1" FontAttributes="Bold"/>
+                                                    </Border>
+                                                </HorizontalStackLayout>
+                                            </VerticalStackLayout>
+
+                                            <Label Grid.Column="2"
+                                                   Text="{x:Static strings:AppResources.BtnCancel}" 
+                                                   TextColor="#FF3B30" 
+                                                   FontSize="12"
+                                                   FontAttributes="Bold"
+                                                   TextDecorations="Underline"
+                                                   VerticalOptions="Start"
+                                                   HorizontalOptions="End"
+                                                   FontFamily="Lora"
+                                                   Margin="0,5,0,0">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnCancelTapped" CommandParameter="{Binding .}" />
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <Label x:Name="TitluIstoric" 
+                           Text="{x:Static strings:AppResources.HistoryTitle}" 
+                           IsVisible="False"
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           TextColor="White" 
+                           Margin="25,30,0,10" 
+                           FontFamily="Lora"/>
+
+                    <CollectionView x:Name="ListaIstoric" 
+                                    IsVisible="False"
+                                    SelectionMode="None"
+                                    BackgroundColor="Transparent">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="20" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Appointment">
+                                <Grid Padding="25,0">
+                                    <Border BackgroundColor="#F8F8F8"
+                                            Stroke="#E0E0E0"
+                                            StrokeThickness="1"
+                                            Padding="15">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="20" />
+                                        </Border.StrokeShape>
+                                        <Border.Shadow>
+                                            <Shadow Brush="Black" Offset="0,4" Opacity="0.05" Radius="8" />
+                                        </Border.Shadow>
+
+                                        <Grid ColumnDefinitions="75, *, Auto" ColumnSpacing="15">
+                                            <VerticalStackLayout Grid.Column="0" VerticalOptions="Center" Spacing="-2">
+                                                <Label Text="{Binding AppointmentDate, StringFormat='{0:dd}'}" FontSize="34" FontAttributes="Bold" TextColor="Gray" HorizontalOptions="Center" FontFamily="Lora"/>
+                                                <Label Text="{Binding AppointmentDate, StringFormat='{0:MMMM}'}" FontSize="11" TextColor="Gray" FontAttributes="Bold" TextTransform="Uppercase" HorizontalOptions="Center" FontFamily="Lora" Margin="0,-5,0,0"/>
+                                            </VerticalStackLayout>
+
+                                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                                <Label Text="{Binding AppointmentDate, StringFormat='{0:HH:mm}'}" FontSize="13" TextColor="Gray" FontFamily="Lora"/>
+                                                <Label Text="{Binding Service.DisplayName}" FontSize="16" FontAttributes="Bold" TextColor="Gray" TextTransform="Uppercase" CharacterSpacing="1" FontFamily="Lora" MaxLines="1"/>
+
+                                                <HorizontalStackLayout Spacing="8">
+                                                    <Label Text="✧" TextColor="Gray" FontSize="14" VerticalOptions="Center"/>
+                                                    <Label Text="{Binding Stylist.FullName}" FontSize="12" TextColor="Gray" FontFamily="Lora" VerticalOptions="Center"/>
+                                                </HorizontalStackLayout>
+
+                                                <Label Text="{x:Static strings:AppResources.LeaveReviewBtn}" 
+                                                       TextColor="#EAB8C1" 
+                                                       FontSize="12" 
+                                                       FontAttributes="Bold" 
+                                                       TextDecorations="Underline" 
+                                                       Margin="0,5,0,0">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="OnLeaveReviewTapped" CommandParameter="{Binding Stylist}" />
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </VerticalStackLayout>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.Footer>
+                            <BoxView HeightRequest="120" BackgroundColor="Transparent" />
+                        </CollectionView.Footer>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <Button Grid.Row="1"
+                    Text="{x:Static strings:AppResources.BtnNewAppoint}"
+                    Clicked="OnNewAppointmentClicked"
+                    BackgroundColor="#EAB8C1"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CharacterSpacing="1"
+                    TextTransform="Uppercase"
+                    CornerRadius="25"
+                    HeightRequest="55"
+                    Margin="30,0,30,30" 
+                    FontFamily="Lora">
+                <Button.Shadow>
+                    <Shadow Brush="Black" Offset="0,4" Opacity="0.2" Radius="10" />
+                </Button.Shadow>
+            </Button>
+        </Grid>
     </Grid>
 </ContentPage>

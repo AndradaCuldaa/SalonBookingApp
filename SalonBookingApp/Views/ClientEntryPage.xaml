@@ -1,25 +1,35 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
              x:Class="SalonBookingApp.Views.ClientEntryPage"
-             Title="Detalii Client">
-    <VerticalStackLayout Spacing="20" Padding="20">
-        <Label Text="Nume Client:" FontAttributes="Bold"/>
-        <Entry Text="{Binding Name}" 
-               Placeholder="Introdu numele clientului" />
+             Title="{x:Static strings:AppResources.ClientDetailsTitle}">
 
-        <Label Text="Adresa / Email:" FontAttributes="Bold"/>
-        <Entry Text="{Binding Address}" 
-               Placeholder="Introdu adresa" />
+    <VerticalStackLayout Spacing="15" Padding="20">
 
-        <Button Text="Salvează"
+        <Label Text="{x:Static strings:AppResources.LastNamePlaceholder}" FontAttributes="Bold" />
+        <Entry Text="{Binding LastName}" Placeholder="Ex: Ionescu" />
+
+        <Label Text="{x:Static strings:AppResources.FirstNamePlaceholder}" FontAttributes="Bold" />
+        <Entry Text="{Binding FirstName}" Placeholder="Ex: Andrei" />
+
+        <Label Text="{x:Static strings:AppResources.EmailPlaceholder}" FontAttributes="Bold" />
+        <Entry Text="{Binding Email}" Placeholder="email@yahoo.com" Keyboard="Email" />
+
+        <Label Text="{x:Static strings:AppResources.PhonePlaceholder}" FontAttributes="Bold" />
+        <Entry Text="{Binding Phone}" Placeholder="07xxxxxxxx" Keyboard="Telephone" />
+
+        <Button Text="{x:Static strings:AppResources.BtnSave}"
                 Clicked="OnSaveButtonClicked"
-                BackgroundColor="Green"
-                TextColor="White"/>
+                BackgroundColor="#EAB8C1"
+                TextColor="White"
+                CornerRadius="20"
+                Margin="0,10,0,0"/>
 
-        <Button Text="Șterge"
+        <Button Text="{x:Static strings:AppResources.BtnDelete}"
                 Clicked="OnDeleteButtonClicked"
-                BackgroundColor="Red"
-                TextColor="White"/>
+                BackgroundColor="#FF3B30"
+                TextColor="White"
+                CornerRadius="20"/>
     </VerticalStackLayout>
 </ContentPage>

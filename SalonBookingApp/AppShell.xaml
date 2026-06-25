@@ -5,32 +5,54 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:SalonBookingApp"
     xmlns:views="clr-namespace:SalonBookingApp.Views"
+    xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
     Title="SalonBookingApp">
-    <TabBar>
-        <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:AboutPage}"
-        Route="AboutPage" />
 
-    <ShellContent
-        x:Name="TabClienti"
-        Title="Clienți"
-        ContentTemplate="{DataTemplate views:ClientPage}"
-        Route="ClientPage" />
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style TargetType="TabBar">
+                <Setter Property="Shell.TabBarBackgroundColor" Value="#EAB8C1" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="Black" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="Gray" />
+                <Setter Property="Shell.TabBarTitleColor" Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
 
-    <ShellContent
-        Title="Stiliști"
-        ContentTemplate="{DataTemplate views:StylistPage}"
-        Route="StylistPage" />
+    <TabBar x:Name="MainTabBar">
 
-    <ShellContent 
-        Title="Servicii" 
-        ContentTemplate="{DataTemplate views:ServicePage}" 
-        Route="ServicePage" />
+        <Tab Title="{x:Static strings:AppResources.HomeTab}" Icon="home.png">
+            <ShellContent 
+                ContentTemplate="{DataTemplate views:HomePage}"
+                Route="HomePage" />
+        </Tab>
 
-    <ShellContent
-            Title="Programări"
-            ContentTemplate="{DataTemplate views:AppointmentPage}"
-            Route="AppointmentPage" />
+        <Tab Title="{x:Static strings:AppResources.AppointsTab}" Icon="appointments.png">
+            <ShellContent 
+                ContentTemplate="{DataTemplate views:AppointmentPage}"
+                Route="AppointmentPage" />
+        </Tab>
+
+        <Tab Title="{x:Static strings:AppResources.ClientTitle}" Icon="clients.png">
+            <ShellContent
+                x:Name="TabClienti"
+                ContentTemplate="{DataTemplate views:ClientPage}"
+                Route="ClientPage" />
+        </Tab>
+
+        <Tab Title="{x:Static strings:AppResources.LabelStylist}" Icon="appointments.png">
+            <ShellContent
+                x:Name="TabStilisti"
+                ContentTemplate="{DataTemplate views:StylistPage}"
+                Route="StylistPage" />
+        </Tab>
+
+        <Tab Title="Account" Icon="account.png">
+            <ShellContent
+                x:Name="TabAccount"
+                ContentTemplate="{DataTemplate views:AccountPage}" 
+                Route="AccountPage" />
+        </Tab>
+
     </TabBar>
 </Shell>

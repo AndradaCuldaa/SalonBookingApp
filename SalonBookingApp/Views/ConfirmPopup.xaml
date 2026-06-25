@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+           x:Class="SalonBookingApp.Views.ConfirmPopup"
+           VerticalOptions="Start">
+    <Border BackgroundColor="White" 
+            Stroke="#EAB8C1" 
+            StrokeThickness="2" 
+            WidthRequest="320" 
+            Padding="20"
+            Margin="0,50,0,0" 
+            HorizontalOptions="Center">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="25"/>
+        </Border.StrokeShape>
+
+        <VerticalStackLayout Spacing="15">
+            <Label Text="✧" FontSize="25" TextColor="#EAB8C1" HorizontalOptions="Center"/>
+
+            <Label x:Name="LabelTitle" 
+                   FontSize="18" FontAttributes="Bold" 
+                   TextColor="Black" HorizontalTextAlignment="Center" 
+                   FontFamily="Lora"/>
+
+            <Label x:Name="LabelMessage" 
+                   FontSize="14" 
+                   TextColor="#555555" HorizontalTextAlignment="Center" 
+                   FontFamily="Lora"/>
+
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button x:Name="BtnYes" 
+                        BackgroundColor="#EAB8C1" TextColor="White" 
+                        CornerRadius="15" WidthRequest="100" HeightRequest="40"
+                        Clicked="OnYesClicked" FontFamily="Lora" FontAttributes="Bold"/>
+
+                <Button x:Name="BtnNo" 
+                        BackgroundColor="White" TextColor="#EAB8C1" 
+                        BorderColor="#EAB8C1" BorderWidth="1"
+                        CornerRadius="15" WidthRequest="100" HeightRequest="40"
+                        Clicked="OnNoClicked" FontFamily="Lora" FontAttributes="Bold"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Border>
+</mct:Popup>

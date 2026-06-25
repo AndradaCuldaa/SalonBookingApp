@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
+             x:Class="SalonBookingApp.Views.AccountInfoPage"
+             Title="{x:Static strings:AppResources.AccountInfo}"
+             BackgroundColor="White">
+
+    <Grid RowDefinitions="Auto, *">
+        <Grid Grid.Row="0" HeightRequest="220">
+            <BoxView Color="#EAB8C1" CornerRadius="0,0,40,40" />
+
+            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+                <Border HeightRequest="110" WidthRequest="110" StrokeThickness="4" Stroke="White">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="55"/>
+                    </Border.StrokeShape>
+                    <Image x:Name="ImageAccountPic" Source="profile_placeholder.png" Aspect="AspectFill"/>
+                </Border>
+                <Label Text="{x:Static strings:AppResources.AccountInfo}" 
+                       TextColor="Black" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" FontFamily="Lora"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="25" Spacing="18">
+
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="{x:Static strings:AppResources.UserPlaceholder}" FontSize="14" TextColor="#888888" FontFamily="Lora" Margin="5,0"/>
+                    <Border Stroke="#F0F0F0" StrokeThickness="2" Padding="12,2" StrokeShape="RoundRectangle 12" BackgroundColor="#FAFAFA">
+                        <Entry Text="{Binding Username}" Placeholder="{x:Static strings:AppResources.UserPlaceholder}" FontFamily="Lora" TextColor="Black"/>
+                    </Border>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="{x:Static strings:AppResources.PhonePlaceholder}" FontSize="14" TextColor="#888888" FontFamily="Lora" Margin="5,0"/>
+                    <Border Stroke="#F0F0F0" StrokeThickness="2" Padding="12,2" StrokeShape="RoundRectangle 12" BackgroundColor="#FAFAFA">
+                        <Entry Text="{Binding Phone}" Keyboard="Telephone" Placeholder="07xx xxx xxx" FontFamily="Lora" TextColor="Black"/>
+                    </Border>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="{x:Static strings:AppResources.EmailPlaceholder}" FontSize="14" TextColor="#888888" FontFamily="Lora" Margin="5,0"/>
+                    <Border Stroke="#F0F0F0" StrokeThickness="2" Padding="12,2" StrokeShape="RoundRectangle 12" BackgroundColor="#FAFAFA">
+                        <Entry Text="{Binding Email}" Keyboard="Email" Placeholder="email@example.com" FontFamily="Lora" TextColor="Black"/>
+                    </Border>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="{x:Static strings:AppResources.PassPlaceholder}" FontSize="14" TextColor="#888888" FontFamily="Lora" Margin="5,0"/>
+                    <Border Stroke="#F0F0F0" StrokeThickness="2" Padding="12,2" StrokeShape="RoundRectangle 12" BackgroundColor="#FAFAFA">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <Entry Text="{Binding Password}" IsPassword="True" Placeholder="{x:Static strings:AppResources.PassPlaceholder}" FontFamily="Lora" TextColor="Black" Grid.Column="0"/>
+                            <ImageButton Source="icon_eye.png" Grid.Column="1" HeightRequest="20" WidthRequest="20" VerticalOptions="Center" BackgroundColor="Transparent"/>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <Button Text="{x:Static strings:AppResources.BtnSave}" Clicked="OnSaveClicked" BackgroundColor="#EAB8C1" TextColor="White" CornerRadius="25" HeightRequest="55" FontAttributes="Bold" FontSize="18" FontFamily="Lora" Margin="0,25,0,20">
+                    <Button.Shadow>
+                        <Shadow Brush="Black" Offset="0,5" Opacity="0.1" Radius="10"/>
+                    </Button.Shadow>
+                </Button>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

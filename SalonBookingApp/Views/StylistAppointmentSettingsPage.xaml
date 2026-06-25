@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
+             x:Class="SalonBookingApp.Views.StylistAppointmentSettingsPage"
+             Title="{x:Static strings:AppResources.SettingsAppointmentTitle}"
+             BackgroundColor="Black">
+
+    <Grid>
+        <Image Source="salon.jpeg" Aspect="AspectFill" />
+        
+
+        <Grid RowDefinitions="*, Auto">
+            <ScrollView Grid.Row="0" VerticalScrollBarVisibility="Never">
+                <VerticalStackLayout Spacing="20" Padding="20">
+
+                    <Border BackgroundColor="#FDFDFD" StrokeThickness="0" Padding="20">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="20"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="{x:Static strings:AppResources.CancelLimitTitle}" FontFamily="Lora" FontAttributes="Bold" FontSize="18" TextColor="#333333"/>
+                            <Border Stroke="#EAB8C1" StrokeThickness="1.5" BackgroundColor="#FFFFFF" Padding="10,0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10"/>
+                                </Border.StrokeShape>
+                                <Picker x:Name="PickerCancelLimit" FontFamily="Lora" TextColor="Black" Title="Selectează limita..."/>
+                            </Border>
+                            <Label Text="{x:Static strings:AppResources.CancelLimitDesc}" FontFamily="Lora" FontSize="14" TextColor="#666666"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border BackgroundColor="#FDFDFD" StrokeThickness="0" Padding="20">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="20"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="{x:Static strings:AppResources.SameDayLimitTitle}" FontFamily="Lora" FontAttributes="Bold" FontSize="18" TextColor="#333333"/>
+                            <Border Stroke="#EAB8C1" StrokeThickness="1.5" BackgroundColor="#FFFFFF" Padding="10,0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10"/>
+                                </Border.StrokeShape>
+                                <Picker x:Name="PickerBookingLimit" FontFamily="Lora" TextColor="Black" Title="Selectează limita..."/>
+                            </Border>
+                            <Label Text="{x:Static strings:AppResources.SameDayLimitDesc}" FontFamily="Lora" FontSize="14" TextColor="#666666"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border BackgroundColor="#FDFDFD" StrokeThickness="0" Padding="20">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="20"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="{x:Static strings:AppResources.MaxBookingsTitle}" FontFamily="Lora" FontAttributes="Bold" FontSize="18" TextColor="#333333"/>
+                            <Border Stroke="#EAB8C1" StrokeThickness="1.5" BackgroundColor="#FFFFFF" Padding="10,0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10"/>
+                                </Border.StrokeShape>
+                                <Picker x:Name="PickerMaxBookings" FontFamily="Lora" TextColor="Black" Title="Selectează limita..."/>
+                            </Border>
+                            <Label Text="{x:Static strings:AppResources.MaxBookingsDesc}" FontFamily="Lora" FontSize="14" TextColor="#666666"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border BackgroundColor="#FDFDFD" StrokeThickness="0" Padding="20">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="20"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="Limită programări în viitor" FontFamily="Lora" FontAttributes="Bold" FontSize="18" TextColor="#333333"/>
+                            <Border Stroke="#EAB8C1" StrokeThickness="1.5" BackgroundColor="#FFFFFF" Padding="10,0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10"/>
+                                </Border.StrokeShape>
+                                <Picker x:Name="PickerFutureLimit" FontFamily="Lora" TextColor="Black" Title="Selectează limita..."/>
+                            </Border>
+                            <Label Text="Limitează cu cât timp în avans clienții pot selecta o lună viitoare pentru programare." FontFamily="Lora" FontSize="14" TextColor="#666666"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <Button Grid.Row="1" 
+                    Text="{x:Static strings:AppResources.BtnSaveChanges}"
+                    Clicked="OnSaveSettingsClicked"
+                    BackgroundColor="#EAB8C1"
+                    TextColor="White"
+                    CornerRadius="25"
+                    FontFamily="Lora"
+                    FontAttributes="Bold"
+                    HeightRequest="55"
+                    Margin="20"
+                    VerticalOptions="End"
+                    HorizontalOptions="Fill"/>
+        </Grid>
+    </Grid>
+
+</ContentPage>

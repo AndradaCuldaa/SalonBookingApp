@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
              x:Class="SalonBookingApp.Views.ServiceEntryPage"
-             Title="Detalii Serviciu">
+             Title="{x:Static strings:AppResources.ServiceDetailsTitle}">
 
-    <VerticalStackLayout Spacing="20" Padding="20">
-        <Label Text="Nume Serviciu:" FontAttributes="Bold"/>
-        <Entry Text="{Binding Name}" Placeholder="Ex: Tuns Bărbați" />
+    <VerticalStackLayout Spacing="15" Padding="20">
 
-        <Label Text="Durata (minute):" FontAttributes="Bold"/>
-        <Entry Text="{Binding Duration}" Placeholder="Ex: 30" Keyboard="Numeric" />
+        <Label Text="{x:Static strings:AppResources.LabelName}" FontAttributes="Bold" FontFamily="Lora"/>
+        <Entry Text="{Binding Name}" Placeholder="Română (ex: Tuns)" />
+        <Entry Text="{Binding NameEn}" Placeholder="English (ex: Haircut)" />
 
-        <Label Text="Preț (RON):" FontAttributes="Bold"/>
-        <Entry Text="{Binding Price}" Placeholder="Ex: 50" Keyboard="Numeric" />
+        <Label Text="{x:Static strings:AppResources.LabelDuration}" FontAttributes="Bold" FontFamily="Lora"/>
+        <Entry Text="{Binding Duration}" Placeholder="30" Keyboard="Numeric" />
 
-        <Button Text="Salvează" Clicked="OnSaveButtonClicked" 
-                BackgroundColor="Blue" TextColor="White"/>
+        <Label Text="{x:Static strings:AppResources.LabelPrice}" FontAttributes="Bold" FontFamily="Lora"/>
+        <Entry Text="{Binding Price}" Placeholder="50" Keyboard="Numeric" />
 
-        <Button Text="Șterge" Clicked="OnDeleteButtonClicked" 
-                BackgroundColor="Red" TextColor="White"/>
+        <Button Text="{x:Static strings:AppResources.BtnSave}" 
+                Clicked="OnSaveButtonClicked" 
+                BackgroundColor="#EAB8C1" 
+                TextColor="White"
+                CornerRadius="20"
+                FontFamily="Lora"/>
+
+        <Button Text="{x:Static strings:AppResources.BtnDelete}" 
+                Clicked="OnDeleteButtonClicked" 
+                BackgroundColor="#FF3B30" 
+                TextColor="White"
+                CornerRadius="20"
+                FontFamily="Lora"/>
     </VerticalStackLayout>
 </ContentPage>

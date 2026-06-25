@@ -1,29 +1,51 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
              x:Class="SalonBookingApp.Views.ClientPage"
-             Title="Lista Clienti">
+             Title="{x:Static strings:AppResources.ClientTitle}">
+
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="+" Clicked="OnItemAdded" />
+        <ToolbarItem x:Name="ToolbarAddClient" Text="+" Clicked="OnItemAdded" />
     </ContentPage.ToolbarItems>
 
     <Grid Padding="20">
         <Label x:Name="LabelEroare" 
-               Text="Doar administratorul poate vedea această listă!" 
+               Text="{x:Static strings:AppResources.AdminOnlyError}" 
                VerticalOptions="Center" HorizontalOptions="Center" 
-               IsVisible="False" FontSize="18" TextColor="Red" />
+               IsVisible="False" FontSize="18" TextColor="Red" 
+               HorizontalTextAlignment="Center"/>
 
         <VerticalStackLayout x:Name="StackListaAdmin" IsVisible="False">
-            <Label Text="Toți clienții înregistrați" FontSize="22" FontAttributes="Bold" Margin="0,0,0,15"/>
+            <Label Text="{x:Static strings:AppResources.AllClientsHeader}" 
+                   FontSize="22" FontAttributes="Bold" Margin="0,0,0,15" TextColor="Black"/>
 
-            <CollectionView x:Name="CliențiListView">
+            <CollectionView x:Name="CliențiListView" SelectionMode="Single" SelectionChanged="OnSelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BorderColor="LightGray" CornerRadius="10" Margin="0,5" Padding="15">
+                        <Frame BorderColor="LightGray" CornerRadius="10" Margin="0,5" Padding="15" HasShadow="True">
                             <VerticalStackLayout>
-                                <Label Text="{Binding FullName}" FontSize="18" FontAttributes="Bold" />
-                                <Label Text="{Binding Phone, StringFormat='Telefon: {0}'}" FontSize="14" />
-                                <Label Text="{Binding Email, StringFormat='Email: {0}'}" FontSize="14" TextColor="Gray" />
+                                <Label Text="{Binding FullName}" FontSize="18" FontAttributes="Bold" TextColor="Black" />
+
+                                <Label FontSize="14" TextColor="Black">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{x:Static strings:AppResources.PhonePlaceholder}" />
+                                            <Span Text=": " />
+                                            <Span Text="{Binding Phone}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label FontSize="14" TextColor="Black">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{x:Static strings:AppResources.EmailPlaceholder}" />
+                                            <Span Text=": " />
+                                            <Span Text="{Binding Email}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>

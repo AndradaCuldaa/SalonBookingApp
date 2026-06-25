@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalonBookingApp.Views.WelcomePage"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#F8F8F8">
+
+    <Grid>
+        <Image Source="salon.jpeg" 
+               Aspect="AspectFill"  
+               VerticalOptions="FillAndExpand"/>
+
+        <VerticalStackLayout VerticalOptions="Center" Padding="40" Spacing="15">
+
+            <Label Text="{x:Static strings:AppResources.Welcomemsg}" 
+                   TextColor="White" 
+                   FontSize="36" 
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Center" 
+                   LineHeight="1.1"
+                   FontFamily="Lora"/>
+
+            <Label Text="{x:Static strings:AppResources.WelcomeSub}"
+                   TextColor="White"
+                   FontSize="16"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,20,0,60" 
+                   FontFamily="Lora"/>
+
+            <Button Text="{x:Static strings:AppResources.StartBtn}"
+                    Clicked="OnGetStartedClicked"
+                    BackgroundColor="#EAB8C1"
+                    TextColor="White"
+                    CornerRadius="25"
+                    HeightRequest="55"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    FontFamily="Lora">
+                <Button.Shadow>
+                    <Shadow Brush="Black" Offset="0,10" Opacity="0.15" Radius="15" />
+                </Button.Shadow>
+            </Button>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

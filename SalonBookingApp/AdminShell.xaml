@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:SalonBookingApp.Views"
+       x:Class="SalonBookingApp.AdminShell">
+
+    <TabBar>
+        <Tab Icon="appointments.png" Title="Calendar">
+            <ShellContent ContentTemplate="{DataTemplate views:StylistCalendarPage}" />
+        </Tab>
+
+        <Tab Icon="customers.png" Title="Clienți">
+            <ShellContent ContentTemplate="{DataTemplate views:ClientPage}" />
+        </Tab>
+
+        <Tab Icon="employees.png" Title="Stiliști">
+            <ShellContent ContentTemplate="{DataTemplate views:StylistPage}" />
+        </Tab>
+
+        <Tab Icon="services.png" Title="Servicii">
+            <ShellContent ContentTemplate="{DataTemplate views:ServicePage}" />
+        </Tab>
+
+        <Tab Icon="user.png" Title="Cont">
+            <ShellContent ContentTemplate="{DataTemplate views:StylistProfilePage}" />
+        </Tab>
+    </TabBar>
+</Shell>

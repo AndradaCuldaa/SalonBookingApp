@@ -1,0 +1,651 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppointsTab" xml:space="preserve">
+    <value>Appointments</value>
+  </data>
+  <data name="CatFacial" xml:space="preserve">
+    <value>Facials</value>
+  </data>
+  <data name="CatHair" xml:space="preserve">
+    <value>Hair Style</value>
+  </data>
+  <data name="CatMakeup" xml:space="preserve">
+    <value>Makeup</value>
+  </data>
+  <data name="CatNails" xml:space="preserve">
+    <value>Nail Art</value>
+  </data>
+  <data name="CatTitle" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="ChooseTreat" xml:space="preserve">
+    <value>Choose your treat today!</value>
+  </data>
+  <data name="ClientsTab" xml:space="preserve">
+    <value>Clients</value>
+  </data>
+  <data name="HiLabel" xml:space="preserve">
+    <value>Hi,</value>
+  </data>
+  <data name="HomeTab" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="LoginTitle" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="ForgotPass" xml:space="preserve">
+    <value>Forget Password?</value>
+  </data>
+  <data name="PassPlaceholder" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="SignUpTitle" xml:space="preserve">
+    <value>Sign-up</value>
+  </data>
+  <data name="SpecTitle" xml:space="preserve">
+    <value>Our Specialists</value>
+  </data>
+  <data name="StartBtn" xml:space="preserve">
+    <value>Let's Start!</value>
+  </data>
+  <data name="StylistsTab" xml:space="preserve">
+    <value>Stylists</value>
+  </data>
+  <data name="UserPlaceholder" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Welcomemsg" xml:space="preserve">
+    <value>Look Awesome &amp; Save Some</value>
+  </data>
+  <data name="WelcomeSub" xml:space="preserve">
+    <value>Step into a world of personalized services.</value>
+  </data>
+  <data name="LastNamePlaceholder" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="FirstNamePlaceholder" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="PhonePlaceholder" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="EmailPlaceholder" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="LabelClient" xml:space="preserve">
+    <value>Client: </value>
+  </data>
+  <data name="LabelService" xml:space="preserve">
+    <value>Service: </value>
+  </data>
+  <data name="LabelPrice" xml:space="preserve">
+    <value>Price: </value>
+  </data>
+  <data name="LabelStylist" xml:space="preserve">
+    <value>Stylist: </value>
+  </data>
+  <data name="BtnCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="BtnNewAppoint" xml:space="preserve">
+    <value>+ New Appointment</value>
+  </data>
+  <data name="AppointmentTitle" xml:space="preserve">
+    <value>Appointment</value>
+  </data>
+  <data name="LabelChooseService" xml:space="preserve">
+    <value>Choose Service</value>
+  </data>
+  <data name="SelectServicePlaceholder" xml:space="preserve">
+    <value>Select Service</value>
+  </data>
+  <data name="LabelChooseStylist" xml:space="preserve">
+    <value>Choose Stylist</value>
+  </data>
+  <data name="LabelMorning" xml:space="preserve">
+    <value>Morning</value>
+  </data>
+  <data name="LabelAfternoon" xml:space="preserve">
+    <value>Afternoon</value>
+  </data>
+  <data name="BookNow" xml:space="preserve">
+    <value>Book Appointment</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="SuccessTitle" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="FieldsRequired" xml:space="preserve">
+    <value>Please fill all fields</value>
+  </data>
+  <data name="PassLengthError" xml:space="preserve">
+    <value>Password must be at least 8 characters.</value>
+  </data>
+  <data name="PhoneFormatError" xml:space="preserve">
+    <value>Phone number must be 10 digits (07xxxxxxxx).</value>
+  </data>
+  <data name="EmailFormatError" xml:space="preserve">
+    <value>Please enter a valid email address.</value>
+  </data>
+  <data name="AccountSaved" xml:space="preserve">
+    <value>Account created successfully!</value>
+  </data>
+  <data name="ConfirmTitle" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="ConfirmCancel" xml:space="preserve">
+    <value>Are you sure you want to cancel?</value>
+  </data>
+  <data name="YesBtn" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="NoBtn" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="InvalidLogin" xml:space="preserve">
+    <value>Invalid credentials. No account?</value>
+  </data>
+  <data name="SelectAllError" xml:space="preserve">
+    <value>Please select a service, a stylist, and a time slot.</value>
+  </data>
+  <data name="ServiceDetailsTitle" xml:space="preserve">
+    <value>Service Details</value>
+  </data>
+  <data name="LabelName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="BtnSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="BtnDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="LabelDuration" xml:space="preserve">
+    <value>Duration (min)</value>
+  </data>
+  <data name="StylistDetailsTitle" xml:space="preserve">
+    <value>Stylist Details</value>
+  </data>
+  <data name="LabelAssignServices" xml:space="preserve">
+    <value>Assign Services</value>
+  </data>
+  <data name="ClientDetailsTitle" xml:space="preserve">
+    <value>Client Details</value>
+  </data>
+  <data name="AdminOnlyError" xml:space="preserve">
+    <value>Only the administrator can view this list!</value>
+  </data>
+  <data name="AllClientsHeader" xml:space="preserve">
+    <value>Registered Clients</value>
+  </data>
+  <data name="ClientTitle" xml:space="preserve">
+    <value>Clients</value>
+  </data>
+  <data name="EditProfile" xml:space="preserve">
+    <value>Edit Profile</value>
+  </data>
+  <data name="AccountInfo" xml:space="preserve">
+    <value>Account Info</value>
+  </data>
+  <data name="LanguageTitle" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Sign-out</value>
+  </data>
+  <data name="ChangePhoto" xml:space="preserve">
+    <value>Change Photo</value>
+  </data>
+  <data name="AccountPageTitle" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="PhotoLibrary" xml:space="preserve">
+    <value>Photo Library</value>
+  </data>
+  <data name="TakePhoto" xml:space="preserve">
+    <value>Take Photo</value>
+  </data>
+  <data name="ChooseFile" xml:space="preserve">
+    <value>Choose File</value>
+  </data>
+  <data name="RemovePhoto" xml:space="preserve">
+    <value>Remove Photo</value>
+  </data>
+  <data name="SignOutConfirmation" xml:space="preserve">
+    <value>Are you sure you want to sign out?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="SuccessUpdate" xml:space="preserve">
+    <value>Account details updated!</value>
+  </data>
+  <data name="ErrorEmptyFields" xml:space="preserve">
+    <value>Username and Email cannot be empty!</value>
+  </data>
+  <data name="AppointmentSaved" xml:space="preserve">
+    <value>Appointment created successfully!</value>
+  </data>
+  <data name="MembershipsTitle" xml:space="preserve">
+    <value>Memberships</value>
+  </data>
+  <data name="PremiumMemberships" xml:space="preserve">
+    <value>Premium Memberships</value>
+  </data>
+  <data name="DiscoverPackages" xml:space="preserve">
+    <value>Discover our packages</value>
+  </data>
+  <data name="MembershipsPageTitle" xml:space="preserve">
+    <value>Memberships</value>
+  </data>
+  <data name="BasicConcept" xml:space="preserve">
+    <value>Monthly Refresh - Ideal for the essentials</value>
+  </data>
+  <data name="BasicInclusions" xml:space="preserve">
+    <value>• 1 x Roots Retouch\n• 1 x Classic Manicure </value>
+  </data>
+  <data name="BasicPerks" xml:space="preserve">
+    <value>• 5% off any other extra service</value>
+  </data>
+  <data name="SilverConcept" xml:space="preserve">
+    <value>Constant Glow - For an always flawless look</value>
+  </data>
+  <data name="SilverInclusions" xml:space="preserve">
+    <value>• 1 x Gel Construction / Manicure \n• 1 x HairStyling\n• 1 x Eyebrow Styling</value>
+  </data>
+  <data name="SilverPerks" xml:space="preserve">
+    <value>• 10% off coloring/balayage \n• A specialty coffee on the house</value>
+  </data>
+  <data name="GoldConcept" xml:space="preserve">
+    <value>Total Pampering - Everything in one place</value>
+  </data>
+  <data name="GoldInclusions" xml:space="preserve">
+    <value>• 1 x Classic Hair Coloring OR 1 x Facial Treatment\n• 2 x Manicure/Pedicure\n• 2 x HairStyling</value>
+  </data>
+  <data name="GoldPerks" xml:space="preserve">
+    <value>• 15% off any extra service\n• Priority booking\n• A specialty coffee on the house</value>
+  </data>
+  <data name="DiamondConcept" xml:space="preserve">
+    <value>VIP All-Inclusive - The ultimate experience &amp; royal treatment</value>
+  </data>
+  <data name="DiamondInclusions" xml:space="preserve">
+    <value>• 1 x Premium Hair Service (Balayage, Ombre, Color+Cut)\n• 1 x Facial Treatment\n• 2 x Manicure/Pedicure\n• 1 x Evening/Event Makeup</value>
+  </data>
+  <data name="DiamondPerks" xml:space="preserve">
+    <value>• 20% off products\n• Free drinks (Prosecco/Coffee)\n• 'Bring a friend': 1x/quarter free manicure for a friend</value>
+  </data>
+  <data name="ChoosePerfectPlan" xml:space="preserve">
+    <value>Choose the perfect plan for you.</value>
+  </data>
+  <data name="TabMonthly" xml:space="preserve">
+    <value>Monthly Plans</value>
+  </data>
+  <data name="TabSessions" xml:space="preserve">
+    <value>Session Packages</value>
+  </data>
+  <data name="WhatsIncluded" xml:space="preserve">
+    <value>What's included:</value>
+  </data>
+  <data name="ExtraPerks" xml:space="preserve">
+    <value>Extra perks:</value>
+  </data>
+  <data name="ChooseSubscriptionBtn" xml:space="preserve">
+    <value>Choose this plan</value>
+  </data>
+  <data name="BuyPackageBtn" xml:space="preserve">
+    <value>Buy Package</value>
+  </data>
+  <data name="PackHairName" xml:space="preserve">
+    <value>Hair Renewal </value>
+  </data>
+  <data name="PackHairDesc" xml:space="preserve">
+    <value>Includes:\n• 3 x Roots Retouch\n• 3 x Women's Haircut\nValidity: 1 Year.</value>
+  </data>
+  <data name="PackNailsName" xml:space="preserve">
+    <value>Perfect Nails </value>
+  </data>
+  <data name="PackNailsDesc" xml:space="preserve">
+    <value>Includes:\n• 3 x Manicure\n• 3 x Pedicure\nValidity: 1 Year.</value>
+  </data>
+  <data name="PackEventName" xml:space="preserve">
+    <value>Events</value>
+  </data>
+  <data name="PackEventDesc" xml:space="preserve">
+    <value>Includes:\n• 3 x HairStyling\n• 3 x Evening Makeup\nValidity: 1 Year.</value>
+  </data>
+  <data name="SuccessBuyMonthly" xml:space="preserve">
+    <value>You have purchased the {0} plan. You will be able to see it soon in the My Appointments section.</value>
+  </data>
+  <data name="SuccessBuySession" xml:space="preserve">
+    <value>You have purchased the {0} package. You will be able to access it from the My Appointments section.</value>
+  </data>
+  <data name="OkBtn" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="MyActivePackages" xml:space="preserve">
+    <value>My Active Packages</value>
+  </data>
+  <data name="ExpiresOn" xml:space="preserve">
+    <value>Expires on:</value>
+  </data>
+  <data name="BtnUsePackage" xml:space="preserve">
+    <value>Use</value>
+  </data>
+  <data name="UpcomingAppointments" xml:space="preserve">
+    <value>Upcoming Appointments</value>
+  </data>
+  <data name="PackageSelectedTitle" xml:space="preserve">
+    <value>Package selected</value>
+  </data>
+  <data name="PackageSelectedMessage" xml:space="preserve">
+    <value>You chose to use the {0} package. Do you want to book an appointment?</value>
+  </data>
+  <data name="BtnYes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="BtnNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Remaining" xml:space="preserve">
+    <value>remaining</value>
+  </data>
+  <data name="ServiceRoots" xml:space="preserve">
+    <value>Root Touch-up</value>
+  </data>
+  <data name="ServiceManicure" xml:space="preserve">
+    <value>Manicure</value>
+  </data>
+  <data name="ServiceNails" xml:space="preserve">
+    <value>Gel Constrcution or Manicure</value>
+  </data>
+  <data name="ServiceHairstyle" xml:space="preserve">
+    <value>HairStyling </value>
+  </data>
+  <data name="ServiceEyebrows" xml:space="preserve">
+    <value>Eyebrow Styling</value>
+  </data>
+  <data name="ServiceHairorFacial" xml:space="preserve">
+    <value>Classic Hair Coloring or Facial Treatments</value>
+  </data>
+  <data name="ServicePremiumHair" xml:space="preserve">
+    <value>Balayage / Ombre /  Hair Coloring+ Haircut</value>
+  </data>
+  <data name="ServiceFacials" xml:space="preserve">
+    <value>Facial Treatments</value>
+  </data>
+  <data name="ServiceManiPedi" xml:space="preserve">
+    <value>Manicure/ Pedicure</value>
+  </data>
+  <data name="ServiceMakeup" xml:space="preserve">
+    <value>Evening Make-up</value>
+  </data>
+  <data name="CancelSubConfirmMsg" xml:space="preserve">
+    <value>Are you sure you want to cancel? This action cannot be undone.</value>
+  </data>
+  <data name="CancelSubSuccess" xml:space="preserve">
+    <value>Package cancelled successfully.</value>
+  </data>
+  <data name="SalonClosedMessage" xml:space="preserve">
+    <value>Sorry, the salon is closed on Sundays.</value>
+  </data>
+  <data name="StylistUnavailableMessage" xml:space="preserve">
+    <value>{0} doesn't work on this day. Please select another one.</value>
+  </data>
+  <data name="SalonClosedMovedMessage" xml:space="preserve">
+    <value>The Salon is closed on Sundays. Moved to the next working day.</value>
+  </data>
+  <data name="StylistUnavailableMovedMessage" xml:space="preserve">
+    <value>{0} is off today. Selection moved to the next available day.</value>
+  </data>
+  <data name="ChooseMonthTitle" xml:space="preserve">
+    <value>Choose month</value>
+  </data>
+  <data name="HistoryTitle" xml:space="preserve">
+    <value>Past Appointments</value>
+  </data>
+  <data name="ReviewTitle" xml:space="preserve">
+    <value>Review and confirm</value>
+  </data>
+  <data name="PaymentLocationTitle" xml:space="preserve">
+    <value>Payment on location</value>
+  </data>
+  <data name="PaymentLocationDesc" xml:space="preserve">
+    <value>Pay at the salon in cash or by card.</value>
+  </data>
+  <data name="TotalPayTitle" xml:space="preserve">
+    <value>Total to pay</value>
+  </data>
+  <data name="ConfirmAppointBtn" xml:space="preserve">
+    <value>Confirm appointment</value>
+  </data>
+  <data name="SubPaymentNote" xml:space="preserve">
+    <value>Payment is made upon the first use of the subscription.</value>
+  </data>
+  <data name="ConfirmSubBtn" xml:space="preserve">
+    <value>Confirm subscription</value>
+  </data>
+  <data name="SubAddedSuccess" xml:space="preserve">
+    <value>Subscription added!</value>
+  </data>
+  <data name="IncludedServices" xml:space="preserve">
+    <value>Included services</value>
+  </data>
+  <data name="PackageAppliedTitle" xml:space="preserve">
+    <value>Package applied</value>
+  </data>
+  <data name="PackageAppliedDesc" xml:space="preserve">
+    <value>One session will be deducted from your active package.</value>
+  </data>
+  <data name="LeaveReviewBtn" xml:space="preserve">
+    <value>Leave a review</value>
+  </data>
+  <data name="ReviewsTitle" xml:space="preserve">
+    <value>Reviews</value>
+  </data>
+  <data name="NoReviewsMsg" xml:space="preserve">
+    <value>This stylist has no reviews yet. Be the first!</value>
+  </data>
+  <data name="WriteReviewPlaceholder" xml:space="preserve">
+    <value>Write about your experience...</value>
+  </data>
+  <data name="SubmitReviewBtn" xml:space="preserve">
+    <value>Submit Review</value>
+  </data>
+  <data name="SelectRatingTitle" xml:space="preserve">
+    <value>Select Rating</value>
+  </data>
+  <data name="TabCalendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="TabProfile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="NoAppointmentsToday" xml:space="preserve">
+    <value>You have no appointments today.</value>
+  </data>
+  <data name="GeneralSettingsTitle" xml:space="preserve">
+    <value>GENERAL SETTINGS</value>
+  </data>
+  <data name="ProfileDetails" xml:space="preserve">
+    <value>Profile Details</value>
+  </data>
+  <data name="WorkingHours" xml:space="preserve">
+    <value>Working Hours</value>
+  </data>
+  <data name="CustomizeServices" xml:space="preserve">
+    <value>Customize Services</value>
+  </data>
+  <data name="MarketingCommunication" xml:space="preserve">
+    <value>MARKETING &amp; COMMUNICATION</value>
+  </data>
+  <data name="ClientReviews" xml:space="preserve">
+    <value>Client Reviews</value>
+  </data>
+  <data name="LogoutBtn" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
+  <data name="ProfileViewProfile" xml:space="preserve">
+    <value>View Profile</value>
+  </data>
+  <data name="ProfileAppSettings" xml:space="preserve">
+    <value>Appointment Settings</value>
+  </data>
+  <data name="ProfileWorkingHours" xml:space="preserve">
+    <value>Working Hours</value>
+  </data>
+  <data name="ProfileReviews" xml:space="preserve">
+    <value>Client Reviews</value>
+  </data>
+  <data name="LangRomanian" xml:space="preserve">
+    <value>Romanian</value>
+  </data>
+  <data name="LangEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="SpecialtyPlaceholder" xml:space="preserve">
+    <value>Specialization</value>
+  </data>
+  <data name="SettingsAppointmentTitle" xml:space="preserve">
+    <value>Appointment Settings</value>
+  </data>
+  <data name="CancelLimitTitle" xml:space="preserve">
+    <value>Cancellation Limit</value>
+  </data>
+  <data name="CancelLimitDesc" xml:space="preserve">
+    <value>Limit how much in advance clients can cancel their appointment.</value>
+  </data>
+  <data name="SameDayLimitTitle" xml:space="preserve">
+    <value>Current Day Booking Limit</value>
+  </data>
+  <data name="SameDayLimitDesc" xml:space="preserve">
+    <value>Limit how soon before the desired time a client can book.</value>
+  </data>
+  <data name="MaxBookingsTitle" xml:space="preserve">
+    <value>Advance bookings per client</value>
+  </data>
+  <data name="MaxBookingsDesc" xml:space="preserve">
+    <value>Limit the maximum number of active bookings a single client can hold.</value>
+  </data>
+  <data name="BtnSaveChanges" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+</root>

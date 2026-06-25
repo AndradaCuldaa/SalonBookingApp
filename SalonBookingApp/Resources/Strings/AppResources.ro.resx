@@ -1,0 +1,651 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppointsTab" xml:space="preserve">
+    <value>Programări</value>
+  </data>
+  <data name="CatFacial" xml:space="preserve">
+    <value>Cosmetică</value>
+  </data>
+  <data name="CatHair" xml:space="preserve">
+    <value>Coafor</value>
+  </data>
+  <data name="CatMakeup" xml:space="preserve">
+    <value>Machiaj</value>
+  </data>
+  <data name="CatNails" xml:space="preserve">
+    <value>Manichiură</value>
+  </data>
+  <data name="CatTitle" xml:space="preserve">
+    <value>Categorii</value>
+  </data>
+  <data name="ChooseTreat" xml:space="preserve">
+    <value>Alege răsfățul tău de astăzi!</value>
+  </data>
+  <data name="ClientsTab" xml:space="preserve">
+    <value>Clienți</value>
+  </data>
+  <data name="HiLabel" xml:space="preserve">
+    <value>Bună,</value>
+  </data>
+  <data name="HomeTab" xml:space="preserve">
+    <value>Acasă</value>
+  </data>
+  <data name="LoginTitle" xml:space="preserve">
+    <value>Autentificare</value>
+  </data>
+  <data name="ForgotPass" xml:space="preserve">
+    <value>Ai uitat parola?</value>
+  </data>
+  <data name="PassPlaceholder" xml:space="preserve">
+    <value>Parolă</value>
+  </data>
+  <data name="SignUpTitle" xml:space="preserve">
+    <value>Înregistrare</value>
+  </data>
+  <data name="SpecTitle" xml:space="preserve">
+    <value>Specialiștii Noștri</value>
+  </data>
+  <data name="StartBtn" xml:space="preserve">
+    <value>Să începem!</value>
+  </data>
+  <data name="StylistsTab" xml:space="preserve">
+    <value>Stiliști</value>
+  </data>
+  <data name="UserPlaceholder" xml:space="preserve">
+    <value>Nume utilizator</value>
+  </data>
+  <data name="Welcomemsg" xml:space="preserve">
+    <value>Arată impecabil și economisește</value>
+  </data>
+  <data name="WelcomeSub" xml:space="preserve">
+    <value>Intră într-o lume a serviciilor personalizate.</value>
+  </data>
+  <data name="LastNamePlaceholder" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="FirstNamePlaceholder" xml:space="preserve">
+    <value>Prenume</value>
+  </data>
+  <data name="PhonePlaceholder" xml:space="preserve">
+    <value>Număr de telefon</value>
+  </data>
+  <data name="EmailPlaceholder" xml:space="preserve">
+    <value>Adresă de email</value>
+  </data>
+  <data name="LabelClient" xml:space="preserve">
+    <value>Client: </value>
+  </data>
+  <data name="LabelService" xml:space="preserve">
+    <value>Serviciu: </value>
+  </data>
+  <data name="LabelPrice" xml:space="preserve">
+    <value>Preț: </value>
+  </data>
+  <data name="LabelStylist" xml:space="preserve">
+    <value>Stilist: </value>
+  </data>
+  <data name="BtnCancel" xml:space="preserve">
+    <value>Anulează</value>
+  </data>
+  <data name="BtnNewAppoint" xml:space="preserve">
+    <value>+ Programare Nouă</value>
+  </data>
+  <data name="AppointmentTitle" xml:space="preserve">
+    <value>Programare</value>
+  </data>
+  <data name="LabelChooseService" xml:space="preserve">
+    <value>Alege Serviciul</value>
+  </data>
+  <data name="SelectServicePlaceholder" xml:space="preserve">
+    <value>Selectează Serviciul</value>
+  </data>
+  <data name="LabelChooseStylist" xml:space="preserve">
+    <value>Alege Stilistul</value>
+  </data>
+  <data name="LabelMorning" xml:space="preserve">
+    <value>Dimineață</value>
+  </data>
+  <data name="LabelAfternoon" xml:space="preserve">
+    <value>După-amiază</value>
+  </data>
+  <data name="BookNow" xml:space="preserve">
+    <value>Finalizează Programarea</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Eroare</value>
+  </data>
+  <data name="SuccessTitle" xml:space="preserve">
+    <value>Succes</value>
+  </data>
+  <data name="FieldsRequired" xml:space="preserve">
+    <value>Te rugăm să completezi toate câmpurile</value>
+  </data>
+  <data name="PassLengthError" xml:space="preserve">
+    <value>Parola trebuie să aibă cel puțin 8 caractere.</value>
+  </data>
+  <data name="PhoneFormatError" xml:space="preserve">
+    <value>Telefonul trebuie să aibă 10 cifre (07xxxxxxxx).</value>
+  </data>
+  <data name="EmailFormatError" xml:space="preserve">
+    <value>Te rugăm să introduci o adresă de email validă.</value>
+  </data>
+  <data name="AccountSaved" xml:space="preserve">
+    <value>Cont creat cu succes!</value>
+  </data>
+  <data name="ConfirmTitle" xml:space="preserve">
+    <value>Confirmare</value>
+  </data>
+  <data name="ConfirmCancel" xml:space="preserve">
+    <value>Sigur vrei să anulezi?</value>
+  </data>
+  <data name="YesBtn" xml:space="preserve">
+    <value>Da</value>
+  </data>
+  <data name="NoBtn" xml:space="preserve">
+    <value>Nu</value>
+  </data>
+  <data name="InvalidLogin" xml:space="preserve">
+    <value>Date incorecte. Nu ai cont?</value>
+  </data>
+  <data name="SelectAllError" xml:space="preserve">
+    <value>Te rugăm să alegi serviciul, stilistul și ora!</value>
+  </data>
+  <data name="ServiceDetailsTitle" xml:space="preserve">
+    <value>Detalii Serviciu</value>
+  </data>
+  <data name="LabelName" xml:space="preserve">
+    <value>Nume Serviciu:</value>
+  </data>
+  <data name="BtnSave" xml:space="preserve">
+    <value>Salvează</value>
+  </data>
+  <data name="BtnDelete" xml:space="preserve">
+    <value>Șterge</value>
+  </data>
+  <data name="LabelDuration" xml:space="preserve">
+    <value>Durată (min)</value>
+  </data>
+  <data name="StylistDetailsTitle" xml:space="preserve">
+    <value>Detalii Stilist</value>
+  </data>
+  <data name="LabelAssignServices" xml:space="preserve">
+    <value>Alocă Servicii</value>
+  </data>
+  <data name="ClientDetailsTitle" xml:space="preserve">
+    <value>Detalii Client</value>
+  </data>
+  <data name="AdminOnlyError" xml:space="preserve">
+    <value>Doar administratorul poate vedea această listă!</value>
+  </data>
+  <data name="AllClientsHeader" xml:space="preserve">
+    <value>Toți clienții înregistrați</value>
+  </data>
+  <data name="ClientTitle" xml:space="preserve">
+    <value>Clienți</value>
+  </data>
+  <data name="EditProfile" xml:space="preserve">
+    <value>Editează Profilul</value>
+  </data>
+  <data name="AccountInfo" xml:space="preserve">
+    <value>Informații Cont</value>
+  </data>
+  <data name="LanguageTitle" xml:space="preserve">
+    <value>Limbă</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Deconectare</value>
+  </data>
+  <data name="ChangePhoto" xml:space="preserve">
+    <value>Schimbă Poza</value>
+  </data>
+  <data name="AccountPageTitle" xml:space="preserve">
+    <value>Cont</value>
+  </data>
+  <data name="PhotoLibrary" xml:space="preserve">
+    <value>Galerie Foto</value>
+  </data>
+  <data name="TakePhoto" xml:space="preserve">
+    <value>Fă o Fotografie</value>
+  </data>
+  <data name="ChooseFile" xml:space="preserve">
+    <value>Alege un Fișier</value>
+  </data>
+  <data name="RemovePhoto" xml:space="preserve">
+    <value>Șterge Poza</value>
+  </data>
+  <data name="SignOutConfirmation" xml:space="preserve">
+    <value>Sigur vrei să te deconectezi?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Anulează</value>
+  </data>
+  <data name="SuccessUpdate" xml:space="preserve">
+    <value>Datele contului au fost actualizate!</value>
+  </data>
+  <data name="ErrorEmptyFields" xml:space="preserve">
+    <value>Numele și Email-ul nu pot fi goale!</value>
+  </data>
+  <data name="AppointmentSaved" xml:space="preserve">
+    <value>Programare salvată cu succes!</value>
+  </data>
+  <data name="MembershipsTitle" xml:space="preserve">
+    <value>Abonamente</value>
+  </data>
+  <data name="PremiumMemberships" xml:space="preserve">
+    <value>Abonamente Premium</value>
+  </data>
+  <data name="DiscoverPackages" xml:space="preserve">
+    <value>Descoperă pachetele noastre</value>
+  </data>
+  <data name="MembershipsPageTitle" xml:space="preserve">
+    <value>Abonamente</value>
+  </data>
+  <data name="BasicConcept" xml:space="preserve">
+    <value>Refresh Lunar - Ideal pentru strictul necesar</value>
+  </data>
+  <data name="BasicInclusions" xml:space="preserve">
+    <value>• 1 x Retușare Rădăcini\n• 1 x Manichiură clasică </value>
+  </data>
+  <data name="BasicPerks" xml:space="preserve">
+    <value>• 5% reducere la orice alt serviciu extra</value>
+  </data>
+  <data name="SilverConcept" xml:space="preserve">
+    <value>Glow Constant - Pentru un look mereu impecabil</value>
+  </data>
+  <data name="SilverInclusions" xml:space="preserve">
+    <value>• 1 x Construcție Gel / Manichiură\n• 1 x Aranjare Păr\n• 1 x Stilizare Sprâncene</value>
+  </data>
+  <data name="SilverPerks" xml:space="preserve">
+    <value>• 10% reducere la vopsit/balayage \n• O cafea de specialitate din partea casei</value>
+  </data>
+  <data name="GoldConcept" xml:space="preserve">
+    <value>Răsfăț Total - Ai totul într-un singur loc</value>
+  </data>
+  <data name="GoldInclusions" xml:space="preserve">
+    <value>• 1 x Vopsit Clasic SAU 1 x Tratament Facial\n• 2 x Manichiură/Pedichiură \n• 2 x Aranjare Păr</value>
+  </data>
+  <data name="GoldPerks" xml:space="preserve">
+    <value>• 15% reducere la orice serviciu extra\n• Prioritate la programări\n• O cafea de specialitate din partea casei</value>
+  </data>
+  <data name="DiamondConcept" xml:space="preserve">
+    <value>VIP All-Inclusive - Experiența supremă și tratament regal</value>
+  </data>
+  <data name="DiamondInclusions" xml:space="preserve">
+    <value>• 1 x Serviciu Premium Păr (Balayage, Ombre, Vopsit+Tuns)\n• 1 x Tratament Facial \n• 2 x Manichiură/Pedichiură\n• 1 x Machiaj de seară/eveniment</value>
+  </data>
+  <data name="DiamondPerks" xml:space="preserve">
+    <value>• 20% reducere la produse\n• Consumație gratuită (Prosecco/Cafea)\n• 'Bring a friend': 1x/trimestru manichiură gratis pt o prietenă</value>
+  </data>
+  <data name="ChoosePerfectPlan" xml:space="preserve">
+    <value>Alege planul perfect pentru tine.</value>
+  </data>
+  <data name="TabMonthly" xml:space="preserve">
+    <value>Lunare</value>
+  </data>
+  <data name="TabSessions" xml:space="preserve">
+    <value>Pachete Ședințe</value>
+  </data>
+  <data name="WhatsIncluded" xml:space="preserve">
+    <value>Ce include:</value>
+  </data>
+  <data name="ExtraPerks" xml:space="preserve">
+    <value>Avantaje extra:</value>
+  </data>
+  <data name="ChooseSubscriptionBtn" xml:space="preserve">
+    <value>Alege acest abonament</value>
+  </data>
+  <data name="BuyPackageBtn" xml:space="preserve">
+    <value>Cumpără Pachetul</value>
+  </data>
+  <data name="PackHairName" xml:space="preserve">
+    <value> Reîmprospătarea Părului </value>
+  </data>
+  <data name="PackHairDesc" xml:space="preserve">
+    <value>Include:\n• 3 x Retușare Rădăcini\n• 3 x Tuns damă\nValabilitate: 1 An.</value>
+  </data>
+  <data name="PackNailsName" xml:space="preserve">
+    <value>Unghii Perfecte</value>
+  </data>
+  <data name="PackNailsDesc" xml:space="preserve">
+    <value>Include:\n• 3 x Manichiură\n• 3 x Pedichiură\nValabilitate: 1 An.</value>
+  </data>
+  <data name="PackEventName" xml:space="preserve">
+    <value>Evenimente</value>
+  </data>
+  <data name="PackEventDesc" xml:space="preserve">
+    <value>Include:\n• 3 x Aranjare Păr\n• 3 x Machiaj de Seară\nValabilitate: 1 An.</value>
+  </data>
+  <data name="SuccessBuyMonthly" xml:space="preserve">
+    <value>Ai achiziționat abonamentul {0}. Îl poți vedea în curând în secțiunea Programările Mele.</value>
+  </data>
+  <data name="SuccessBuySession" xml:space="preserve">
+    <value>Ai achiziționat pachetul {0}. Îl vei putea accesa din secțiunea Programările Mele.</value>
+  </data>
+  <data name="OkBtn" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="MyActivePackages" xml:space="preserve">
+    <value>Pachetele Mele Active</value>
+  </data>
+  <data name="ExpiresOn" xml:space="preserve">
+    <value>Expiră pe:</value>
+  </data>
+  <data name="BtnUsePackage" xml:space="preserve">
+    <value>Folosește</value>
+  </data>
+  <data name="UpcomingAppointments" xml:space="preserve">
+    <value>Programări Viitoare</value>
+  </data>
+  <data name="PackageSelectedTitle" xml:space="preserve">
+    <value>Pachet selectat</value>
+  </data>
+  <data name="PackageSelectedMessage" xml:space="preserve">
+    <value>Ai ales să folosești pachetul {0}. Vrei să te programezi?</value>
+  </data>
+  <data name="BtnYes" xml:space="preserve">
+    <value>Da</value>
+  </data>
+  <data name="BtnNo" xml:space="preserve">
+    <value>Nu</value>
+  </data>
+  <data name="Remaining" xml:space="preserve">
+    <value>rămase</value>
+  </data>
+  <data name="ServiceRoots" xml:space="preserve">
+    <value>Retușare Rădăcini</value>
+  </data>
+  <data name="ServiceManicure" xml:space="preserve">
+    <value>Manichiură</value>
+  </data>
+  <data name="ServiceNails" xml:space="preserve">
+    <value>Construcție gel sau Manichiură</value>
+  </data>
+  <data name="ServiceHairstyle" xml:space="preserve">
+    <value>Aranjare Păr</value>
+  </data>
+  <data name="ServiceEyebrows" xml:space="preserve">
+    <value>Stilizare sprâncene</value>
+  </data>
+  <data name="ServiceHairorFacial" xml:space="preserve">
+    <value>Vopsit clasic sau Tratamente faciale</value>
+  </data>
+  <data name="ServicePremiumHair" xml:space="preserve">
+    <value>Balayage/ Ombre / Vopsit + Tuns</value>
+  </data>
+  <data name="ServiceFacials" xml:space="preserve">
+    <value>Tratamente Faciale</value>
+  </data>
+  <data name="ServiceManiPedi" xml:space="preserve">
+    <value>Manichiură / Pedichiură</value>
+  </data>
+  <data name="ServiceMakeup" xml:space="preserve">
+    <value>Machiaj de seară</value>
+  </data>
+  <data name="CancelSubConfirmMsg" xml:space="preserve">
+    <value>Ești sigură că vrei să anulezi? Acțiunea este ireversibilă.</value>
+  </data>
+  <data name="CancelSubSuccess" xml:space="preserve">
+    <value>Pachetul a fost anulat cu succes.</value>
+  </data>
+  <data name="SalonClosedMessage" xml:space="preserve">
+    <value>Ne pare rău, dar salonul este închis Duminica.</value>
+  </data>
+  <data name="StylistUnavailableMessage" xml:space="preserve">
+    <value>{0} nu lucrează în această zi. Te rugăm să alegi alta.</value>
+  </data>
+  <data name="SalonClosedMovedMessage" xml:space="preserve">
+    <value>Salonul este închis Duminica. Am selectat următoarea zi.</value>
+  </data>
+  <data name="StylistUnavailableMovedMessage" xml:space="preserve">
+    <value>{0} are liber azi. Am mutat selecția pe următoarea zi.</value>
+  </data>
+  <data name="ChooseMonthTitle" xml:space="preserve">
+    <value>Alege luna</value>
+  </data>
+  <data name="HistoryTitle" xml:space="preserve">
+    <value>Istoric Programări</value>
+  </data>
+  <data name="ReviewTitle" xml:space="preserve">
+    <value>Verifică și confirmă</value>
+  </data>
+  <data name="PaymentLocationTitle" xml:space="preserve">
+    <value>Plată în locație</value>
+  </data>
+  <data name="PaymentLocationDesc" xml:space="preserve">
+    <value>Plătești la salon în numerar sau card.</value>
+  </data>
+  <data name="TotalPayTitle" xml:space="preserve">
+    <value>Total de plată</value>
+  </data>
+  <data name="ConfirmAppointBtn" xml:space="preserve">
+    <value>Confirmă programarea</value>
+  </data>
+  <data name="SubPaymentNote" xml:space="preserve">
+    <value>Plata se face la prima utilizare a abonamentului.</value>
+  </data>
+  <data name="ConfirmSubBtn" xml:space="preserve">
+    <value>Confirmă abonamentul</value>
+  </data>
+  <data name="SubAddedSuccess" xml:space="preserve">
+    <value>Abonament adăugat cu succes!</value>
+  </data>
+  <data name="IncludedServices" xml:space="preserve">
+    <value>Servicii incluse</value>
+  </data>
+  <data name="PackageAppliedTitle" xml:space="preserve">
+    <value>Pachet aplicat</value>
+  </data>
+  <data name="PackageAppliedDesc" xml:space="preserve">
+    <value>Se va scădea o ședință din abonamentul tău activ.</value>
+  </data>
+  <data name="LeaveReviewBtn" xml:space="preserve">
+    <value>Lasă o recenzie</value>
+  </data>
+  <data name="ReviewsTitle" xml:space="preserve">
+    <value>Recenzii</value>
+  </data>
+  <data name="NoReviewsMsg" xml:space="preserve">
+    <value>Acest stilist nu are nicio recenzie încă. Fii primul!</value>
+  </data>
+  <data name="WriteReviewPlaceholder" xml:space="preserve">
+    <value>Scrie despre experiența ta...</value>
+  </data>
+  <data name="SubmitReviewBtn" xml:space="preserve">
+    <value>Trimite Recenzia</value>
+  </data>
+  <data name="SelectRatingTitle" xml:space="preserve">
+    <value>Selectează Nota</value>
+  </data>
+  <data name="TabCalendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="TabProfile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="NoAppointmentsToday" xml:space="preserve">
+    <value>Nu ai nicio programare în această zi.</value>
+  </data>
+  <data name="GeneralSettingsTitle" xml:space="preserve">
+    <value>SETĂRI GENERALE</value>
+  </data>
+  <data name="ProfileDetails" xml:space="preserve">
+    <value>Detalii profil</value>
+  </data>
+  <data name="WorkingHours" xml:space="preserve">
+    <value>Program de lucru</value>
+  </data>
+  <data name="CustomizeServices" xml:space="preserve">
+    <value>Personalizare servicii</value>
+  </data>
+  <data name="MarketingCommunication" xml:space="preserve">
+    <value>MARKETING ȘI COMUNICARE</value>
+  </data>
+  <data name="ClientReviews" xml:space="preserve">
+    <value>Recenzii clienți</value>
+  </data>
+  <data name="LogoutBtn" xml:space="preserve">
+    <value>Deconectare</value>
+  </data>
+  <data name="ProfileViewProfile" xml:space="preserve">
+    <value>Vezi profil</value>
+  </data>
+  <data name="ProfileAppSettings" xml:space="preserve">
+    <value>Setări Programări</value>
+  </data>
+  <data name="ProfileWorkingHours" xml:space="preserve">
+    <value>Program de Lucru</value>
+  </data>
+  <data name="ProfileReviews" xml:space="preserve">
+    <value>Recenzii Clienți</value>
+  </data>
+  <data name="LangRomanian" xml:space="preserve">
+    <value>Română</value>
+  </data>
+  <data name="LangEnglish" xml:space="preserve">
+    <value>Engleză</value>
+  </data>
+  <data name="SpecialtyPlaceholder" xml:space="preserve">
+    <value>Specializare</value>
+  </data>
+  <data name="SettingsAppointmentTitle" xml:space="preserve">
+    <value>Setări programări</value>
+  </data>
+  <data name="CancelLimitTitle" xml:space="preserve">
+    <value>Limită anulare programări</value>
+  </data>
+  <data name="CancelLimitDesc" xml:space="preserve">
+    <value>Limitează cu cât timp înainte clienții își vor putea anula programarea.</value>
+  </data>
+  <data name="SameDayLimitTitle" xml:space="preserve">
+    <value>Limită programări în ziua curentă</value>
+  </data>
+  <data name="SameDayLimitDesc" xml:space="preserve">
+    <value>Limitează cu cât timp înainte de ora programării un client se poate programa</value>
+  </data>
+  <data name="MaxBookingsTitle" xml:space="preserve">
+    <value>Programări în avans (același client)</value>
+  </data>
+  <data name="MaxBookingsDesc" xml:space="preserve">
+    <value>Limitează numărul maxim de programări active pe care un client le poate avea la tine.</value>
+  </data>
+  <data name="BtnSaveChanges" xml:space="preserve">
+    <value>Salvează modificările</value>
+  </data>
+</root>

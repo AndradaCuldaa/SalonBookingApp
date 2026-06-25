@@ -1,36 +1,141 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
              x:Class="SalonBookingApp.Views.HomePage"
-             Title="SingUp/LogIn">
+             Title="Home"
+             BackgroundColor="#F8F8F8"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
 
-    <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" 
-                     HorizontalOptions="FillAndExpand" 
-                     Padding="30" 
-                     Spacing="20">
+    <Grid>
+        <Grid RowDefinitions="Auto, *">
 
-            <Label Text="Bine ai venit la&#x0a;SalonBooking"
-                   FontSize="28"
-                   FontAttributes="Bold"
-                   TextColor="#3F51B5"
-                   HorizontalTextAlignment="Center"
-                   Margin="0,0,0,40" />
+            <Border x:Name="HeaderPrevizualizareStilist" 
+                    IsVisible="False" 
+                    BackgroundColor="#FFF0F2" 
+                    StrokeThickness="0" 
+                    Padding="15,40,15,10"
+                    ZIndex="10"
+                    VerticalOptions="Start">
+                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnÎnapoiLaStilistTapped" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label Text="←" FontSize="24" TextColor="#EAB8C1" FontAttributes="Bold" VerticalOptions="Center" />
+                    <Label Text="Înapoi la profil (Mod Previzualizare)" FontSize="16" TextColor="Black" FontFamily="Lora" FontAttributes="Bold" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Border>
 
-            <Button Text="Sign Up (Creează Cont)"
-                    Clicked="OnSignUpClicked"
-                    BackgroundColor="#3F51B5"
-                    TextColor="White"
-                    HeightRequest="60"
-                    CornerRadius="10"/>
+            <Grid Grid.Row="0" HeightRequest="180">
+                <Border BackgroundColor="Transparent" ZIndex="2" InputTransparent="True">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="0,0,40,40" />
+                    </Border.StrokeShape>
+                    <Image Source="salon.jpeg" Aspect="AspectFill" ZIndex="0" />
+                </Border>
 
-            <Button Text="Log In (Autentificare)"
-                    Clicked="OnLoginClicked"
-                    BackgroundColor="#3F51B5"
-                    TextColor="White"
-                    HeightRequest="60"
-                    CornerRadius="10"/>
+                <Grid ColumnDefinitions="*, Auto" Padding="25,60,25,30" VerticalOptions="Center" ZIndex="3">
+                    <VerticalStackLayout Grid.Column="0" VerticalOptions="Center" Spacing="2">
+                        <Label Text="{x:Static strings:AppResources.HiLabel}" TextColor="White" FontSize="20" Opacity="0.9" FontFamily="Lora"/>
+                        <Label x:Name="LabelNumeClient" Text="User" TextColor="White" FontSize="28" FontAttributes="Bold" FontFamily="Lora"/>
+                    </VerticalStackLayout>
 
-        </StackLayout>
-    </ContentPage.Content>
+                    <Frame Grid.Column="1" Padding="0" HeightRequest="55" WidthRequest="55" CornerRadius="27" IsClippedToBounds="True" HasShadow="False" BorderColor="White">
+                        <Image x:Name="HomePageProfilePic" Source="profile_placeholder.png" Aspect="AspectFill" />
+                    </Frame>
+                </Grid>
+            </Grid>
+
+            <ScrollView Grid.Row="1">
+                <VerticalStackLayout Padding="25" Spacing="25">
+                    <Label Text="{x:Static strings:AppResources.CatTitle}" TextColor="#333333" FontSize="22" FontAttributes="Bold" FontFamily="Lora"/>
+
+                    <Grid ColumnDefinitions="*, *" RowDefinitions="180, 180" ColumnSpacing="15" RowSpacing="15">
+                        <Frame Grid.Row="0" Grid.Column="0" Padding="0" CornerRadius="20" IsClippedToBounds="True" HasShadow="True" BorderColor="Transparent">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCategoryClicked" CommandParameter="Hair"  />
+                            </Frame.GestureRecognizers>
+                            <Grid>
+                                <Image Source="hairstyle.jpeg" Aspect="AspectFill" />
+                                <Label Text="{x:Static strings:AppResources.CatHair}" TextColor="White" FontAttributes="Bold" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="Lora" />
+                            </Grid>
+                        </Frame>
+
+                        <Frame Grid.Row="0" Grid.Column="1" Padding="0" CornerRadius="20" IsClippedToBounds="True" HasShadow="True" BorderColor="Transparent">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCategoryClicked" CommandParameter="Nails" />
+                            </Frame.GestureRecognizers>
+                            <Grid>
+                                <Image Source="mani.jpeg" Aspect="AspectFill" />
+                                <Label Text="{x:Static strings:AppResources.CatNails}" TextColor="White" FontAttributes="Bold" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="Lora"/>
+                            </Grid>
+                        </Frame>
+
+                        <Frame Grid.Row="1" Grid.Column="0" Padding="0" CornerRadius="20" IsClippedToBounds="True" HasShadow="True" BorderColor="Transparent">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCategoryClicked" CommandParameter="Facial" />
+                            </Frame.GestureRecognizers>
+                            <Grid>
+                                <Image Source="facial.jpeg" Aspect="AspectFill" />
+                                <Label Text="{x:Static strings:AppResources.CatFacial}" TextColor="White" FontAttributes="Bold" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="Lora"/>
+                            </Grid>
+                        </Frame>
+
+                        <Frame Grid.Row="1" Grid.Column="1" Padding="0" CornerRadius="20" IsClippedToBounds="True" HasShadow="True" BorderColor="Transparent">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCategoryClicked" CommandParameter="Makeup" />
+                            </Frame.GestureRecognizers>
+                            <Grid>
+                                <Image Source="makeup.jpg" Aspect="AspectFill" />
+                                <Label Text="{x:Static strings:AppResources.CatMakeup}" TextColor="White" FontAttributes="Bold" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="Lora"/>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+
+                    <Label Text="{x:Static strings:AppResources.MembershipsTitle}" FontAttributes="Bold" FontSize="22" TextColor="#333333" Margin="0,10,0,0" FontFamily="Lora"/>
+
+                    <Frame CornerRadius="20" Padding="0" HasShadow="True" BorderColor="Transparent" HeightRequest="140">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMembershipTapped" />
+                        </Frame.GestureRecognizers>
+                        <Grid>
+                            <Image Source="membership_banner.jpeg" Aspect="AspectFill" />
+                            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
+                                <Label Text="{x:Static strings:AppResources.PremiumMemberships}" TextColor="White" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" FontFamily="Lora"/>
+                                <Label Text="{x:Static strings:AppResources.DiscoverPackages}" TextColor="White" FontSize="14" HorizontalOptions="Center" FontFamily="Lora"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Frame>
+
+                    <Label Text="{x:Static strings:AppResources.SpecTitle}" TextColor="#333333" FontSize="22" FontAttributes="Bold" Margin="0,10,0,0" FontFamily="Lora"/>
+
+                    <CollectionView x:Name="StylistsList" HeightRequest="190" HorizontalScrollBarVisibility="Never">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="15"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="White" CornerRadius="20" Padding="10" WidthRequest="120" HasShadow="False" BorderColor="#EEEEEE">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnStylistTapped" />
+                                    </Frame.GestureRecognizers>
+                                    <VerticalStackLayout HorizontalOptions="Center" Spacing="6" InputTransparent="True">
+                                        <Image Source="{Binding ImagePath}" HeightRequest="80" WidthRequest="80" Aspect="AspectFill" InputTransparent="True">
+                                            <Image.Clip>
+                                                <EllipseGeometry Center="40,40" RadiusX="40" RadiusY="40" />
+                                            </Image.Clip>
+                                        </Image>
+                                        <Label Text="{Binding FirstName}" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" FontSize="18"  FontFamily="Lora" InputTransparent="True"/>
+                                        <Label Text="{Binding Specialization}" TextColor="Gray" HorizontalOptions="Center" FontSize="14" FontFamily="Lora" InputTransparent="True" />
+                                        <Label Text="{Binding StarsDisplay}" FontSize="12" TextColor="#D4AF37" HorizontalOptions="Center" FontFamily="Lora" InputTransparent="True"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+    </Grid>
 </ContentPage>

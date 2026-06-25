@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
+             x:Class="SalonBookingApp.Views.ReviewAppointmentPage"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
+
+    <Grid>
+        <Image Source="salon.jpeg" Aspect="AspectFill" HorizontalOptions="Fill" VerticalOptions="Fill" Opacity="0.9"/>
+        <BoxView BackgroundColor="Black" Opacity="0.4" HorizontalOptions="Fill" VerticalOptions="Fill" />
+
+        <Grid RowDefinitions="Auto, *">
+            <Grid Grid.Row="0" Padding="20,50,20,20" ColumnDefinitions="Auto, *">
+                <Label Text="←" TextColor="White" FontSize="28" FontAttributes="Bold" Grid.Column="0" VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackClicked" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label x:Name="TitluPaginaHeader" Text="{x:Static strings:AppResources.ReviewTitle}" TextColor="White" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" Grid.Column="1" VerticalOptions="Center" FontFamily="Lora" Margin="-28,0,0,0"/>
+            </Grid>
+
+            <ScrollView Grid.Row="1" VerticalOptions="End">
+                <Border BackgroundColor="White" Padding="25" Margin="0,0,0,0" StrokeThickness="0" VerticalOptions="End">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="35,35,0,0" />
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="20">
+                        <Label x:Name="TitluCard" Text="{x:Static strings:AppResources.ReviewTitle}" FontSize="24" FontAttributes="Bold" TextColor="Black" FontFamily="Lora" Margin="0,0,0,10"/>
+
+                        <Grid x:Name="GridData" ColumnDefinitions="Auto, *" ColumnSpacing="15">
+                            <Image Source="appointments.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Grid.Column="0"/>
+                            <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                                <Label x:Name="LabelDataOra" FontSize="16" FontAttributes="Bold" TextColor="Black" FontFamily="Lora"/>
+                                <Label x:Name="LabelStilist" FontSize="14" TextColor="Gray" FontFamily="Lora"/>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <BoxView x:Name="Separator1" HeightRequest="1" BackgroundColor="#F0F0F0" />
+
+                        <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
+                            <Image Source="check.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Grid.Column="0"/>
+                            <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                                <Label x:Name="LabelServiciu" FontSize="16" FontAttributes="Bold" TextColor="Black" FontFamily="Lora"/>
+                                <Label x:Name="LabelDurataPret" FontSize="14" TextColor="Gray" FontFamily="Lora"/>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" BackgroundColor="#F0F0F0" />
+
+                        <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
+                            <Image Source="card.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Start" Grid.Column="0" Margin="0,2,0,0"/>
+                            <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                <Label x:Name="LabelMetodaPlataTitlu" Text="{x:Static strings:AppResources.PaymentLocationTitle}" FontSize="16" FontAttributes="Bold" TextColor="Black" FontFamily="Lora"/>
+                                <Label x:Name="LabelMetodaPlataDescriere" Text="{x:Static strings:AppResources.PaymentLocationDesc}" FontSize="14" TextColor="Gray" FontFamily="Lora"/>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" BackgroundColor="#F0F0F0" Margin="0,10,0,10"/>
+
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                            <Label Text="{x:Static strings:AppResources.TotalPayTitle}" FontSize="16" TextColor="Gray" HorizontalOptions="Center" FontFamily="Lora"/>
+                            <Label x:Name="LabelTotal" FontSize="32" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" FontFamily="Lora"/>
+                        </VerticalStackLayout>
+
+                        <Button x:Name="BtnConfirmare"
+                                Text="{x:Static strings:AppResources.ConfirmAppointBtn}"
+                                Clicked="OnConfirmClicked"
+                                BackgroundColor="#EAB8C1"
+                                TextColor="White"
+                                FontAttributes="Bold"
+                                CornerRadius="25"
+                                HeightRequest="55"
+                                Margin="0,20,0,10"
+                                FontFamily="Lora"/>
+                    </VerticalStackLayout>
+                </Border>
+            </ScrollView>
+        </Grid>
+    </Grid>
+</ContentPage>

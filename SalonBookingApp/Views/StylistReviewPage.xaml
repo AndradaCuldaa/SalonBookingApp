@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
+             x:Class="SalonBookingApp.Views.StylistReviewPage"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
+
+    <Grid>
+        <Image Source="salon.jpeg" Aspect="AspectFill" HorizontalOptions="Fill" VerticalOptions="Fill" Opacity="0.9"/>
+        <BoxView BackgroundColor="Black" Opacity="0.4" HorizontalOptions="Fill" VerticalOptions="Fill" />
+
+        <Grid RowDefinitions="Auto, *">
+            <Grid Grid.Row="0" Padding="20,50,20,20" ColumnDefinitions="50, *, 50">
+                <Grid Grid.Column="0" BackgroundColor="Transparent" Padding="0,10,20,10">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackClicked" />
+                    </Grid.GestureRecognizers>
+                    <Label Text="←" TextColor="White" FontSize="28" VerticalOptions="Start" FontAttributes="Bold" />
+                </Grid>
+
+                <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="10">
+                    <Frame CornerRadius="45" HeightRequest="90" WidthRequest="90" Padding="0" IsClippedToBounds="True" BorderColor="#EAB8C1" HasShadow="True">
+                        <Image x:Name="ImageStilist" Aspect="AspectFill" BackgroundColor="White"/>
+                    </Frame>
+                    <Label x:Name="LabelNumeStilist" TextColor="White" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" FontFamily="Lora"/>
+                    <Label x:Name="LabelSpecializare" TextColor="#EAB8C1" FontSize="14" FontAttributes="Bold" TextTransform="Uppercase" HorizontalOptions="Center" FontFamily="Lora"/>
+                </VerticalStackLayout>
+            </Grid>
+
+            <Border Grid.Row="1" BackgroundColor="White" Padding="0" Margin="0,10,0,0" StrokeThickness="0" VerticalOptions="Fill">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="35,35,0,0" />
+                </Border.StrokeShape>
+
+                <Grid RowDefinitions="*, Auto">
+                    <ScrollView Grid.Row="0" Padding="25,25,25,10">
+                        <VerticalStackLayout Spacing="15">
+                            <Label Text="{x:Static strings:AppResources.ReviewsTitle}" FontSize="20" FontAttributes="Bold" TextColor="Black" FontFamily="Lora"/>
+                            <Label x:Name="LabelNoReviews" Text="{x:Static strings:AppResources.NoReviewsMsg}" IsVisible="False" TextColor="Gray" FontAttributes="Italic" HorizontalOptions="Center" Margin="0,20,0,20" FontFamily="Lora"/>
+
+                            <CollectionView x:Name="ListaRecenzii" SelectionMode="None">
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="15" />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BackgroundColor="#F8F8F8" Stroke="#F0F0F0" StrokeThickness="1" Padding="15">
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="15" />
+                                            </Border.StrokeShape>
+                                            <VerticalStackLayout Spacing="5">
+                                                <Grid ColumnDefinitions="*, Auto">
+                                                    <Label Grid.Column="0" Text="{Binding ClientName}" FontAttributes="Bold" TextColor="Black" FontSize="14" FontFamily="Lora"/>
+                                                    <Label Grid.Column="1" Text="{Binding DateAdded, StringFormat='{0:dd MMM yyyy}'}" TextColor="Gray" FontSize="11" FontFamily="Lora"/>
+                                                </Grid>
+                                                <Label Text="{Binding RatingDisplay}" FontSize="14" TextColor="#EAB8C1"/>
+                                                <Label Text="{Binding Comment}" TextColor="#333333" FontSize="14" FontFamily="Lora" Margin="0,5,0,0"/>
+                                            </VerticalStackLayout>
+                                        </Border>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </VerticalStackLayout>
+                    </ScrollView>
+
+                    <VerticalStackLayout x:Name="ReviewInputSection" Grid.Row="1" Spacing="15" Padding="25,10,25,30" BackgroundColor="White" IsVisible="False">
+                        <BoxView HeightRequest="1" BackgroundColor="#F0F0F0" Margin="-25,0,-25,10"/>
+
+                        <Picker x:Name="PickerRating" Title="{x:Static strings:AppResources.SelectRatingTitle}" TextColor="Black" TitleColor="Gray" FontFamily="Lora" BackgroundColor="#F8F8F8">
+                            <Picker.Items>
+                                <x:String>⭐⭐⭐⭐⭐ - Excelent</x:String>
+                                <x:String>⭐⭐⭐⭐ - Foarte Bun</x:String>
+                                <x:String>⭐⭐⭐ - Mediu</x:String>
+                                <x:String>⭐⭐ - Slab</x:String>
+                                <x:String>⭐ - Foarte Slab</x:String>
+                            </Picker.Items>
+                        </Picker>
+
+                        <Editor x:Name="EditorReview" Placeholder="{x:Static strings:AppResources.WriteReviewPlaceholder}" HeightRequest="80" TextColor="Black" PlaceholderColor="Gray" BackgroundColor="#F8F8F8" FontFamily="Lora" AutoSize="TextChanges"/>
+
+                        <Button Text="{x:Static strings:AppResources.SubmitReviewBtn}" 
+                                Clicked="OnSubmitReviewClicked" 
+                                BackgroundColor="#EAB8C1" 
+                                TextColor="White" 
+                                FontAttributes="Bold" 
+                                CornerRadius="25" 
+                                HeightRequest="55" 
+                                FontFamily="Lora">
+                            <Button.Shadow>
+                                <Shadow Brush="Black" Offset="0,4" Opacity="0.2" Radius="8" />
+                            </Button.Shadow>
+                        </Button>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</ContentPage>

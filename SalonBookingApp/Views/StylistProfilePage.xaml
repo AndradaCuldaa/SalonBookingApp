@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
+             x:Class="SalonBookingApp.Views.StylistProfilePage"
+             Shell.NavBarIsVisible="False">
+
+    <Grid>
+        <Image Source="salon.jpeg" Aspect="AspectFill" />
+
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <VerticalStackLayout Padding="20,40,20,40" Spacing="25" HorizontalOptions="FillAndExpand">
+
+                <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <Border WidthRequest="120" HeightRequest="120" Stroke="#EAB8C1" StrokeThickness="3" HorizontalOptions="Center">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="60" />
+                        </Border.StrokeShape>
+                        <Image Source="{Binding PozaStilist}" Aspect="AspectFill" />
+                    </Border>
+
+                    <Label Text="{Binding NumeStilist}" 
+                           FontSize="28" 
+                           TextColor="White" 
+                           FontFamily="Lora" 
+                           FontAttributes="Bold" 
+                           HorizontalOptions="Center" />
+
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                        <Label Text="★" FontSize="20" TextColor="#FFD700" />
+                        <Label Text="★" FontSize="20" TextColor="#FFD700" />
+                        <Label Text="★" FontSize="20" TextColor="#FFD700" />
+                        <Label Text="★" FontSize="20" TextColor="#FFD700" />
+                        <Label Text="★" FontSize="20" TextColor="#FFD700" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+                <Border BackgroundColor="White" StrokeThickness="0" HorizontalOptions="Center" Padding="20,10" Margin="0,0,0,10">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnVeziProfilTapped" />
+                    </Border.GestureRecognizers>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="25" />
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Image Source="view.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" />
+                        <Label Text="{x:Static strings:AppResources.ProfileViewProfile}" FontSize="16" TextColor="Black" FontFamily="Lora" FontAttributes="Bold" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <Border BackgroundColor="White" Stroke="#EAB8C1" StrokeThickness="2" Padding="15">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15" />
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="15">
+
+                        <Grid ColumnDefinitions="Auto, *, Auto">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDetaliiProfilTapped" />
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Column="0" Source="user.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="{x:Static strings:AppResources.ProfileDetails}" FontSize="16" FontFamily="Lora" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center" Margin="15,0,0,0" />
+                            <Label Grid.Column="2" Text="➔" FontSize="18" TextColor="Black" VerticalOptions="Center" />
+                        </Grid>
+
+                        <BoxView HeightRequest="1" Color="#EEEEEE" />
+
+                        <Grid ColumnDefinitions="Auto, *, Auto">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnSetariProgramariTapped" />
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Column="0" Source="appointments.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="{x:Static strings:AppResources.ProfileAppSettings}" FontSize="16" FontFamily="Lora" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center" Margin="15,0,0,0" />
+                            <Label Grid.Column="2" Text="➔" FontSize="18" TextColor="Black" VerticalOptions="Center" />
+                        </Grid>
+
+                        <BoxView HeightRequest="1" Color="#EEEEEE" />
+
+                        <Grid ColumnDefinitions="Auto, *, Auto">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnProgramLucruTapped" />
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Column="0" Source="clock.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="{x:Static strings:AppResources.ProfileWorkingHours}" FontSize="16" FontFamily="Lora" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center" Margin="15,0,0,0" />
+                            <Label Grid.Column="2" Text="➔" FontSize="18" TextColor="Black" VerticalOptions="Center" />
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border BackgroundColor="White" Stroke="#EAB8C1" StrokeThickness="2" Padding="15">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15" />
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="15">
+
+                        <Grid ColumnDefinitions="Auto, *, Auto">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnRecenziiTapped" />
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Column="0" Source="star.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="{x:Static strings:AppResources.ProfileReviews}" FontSize="16" FontFamily="Lora" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center" Margin="15,0,0,0" />
+                            <Label Grid.Column="2" Text="➔" FontSize="18" TextColor="Black" VerticalOptions="Center" />
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border BackgroundColor="White" Stroke="#EAB8C1" StrokeThickness="2" Padding="15">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15" />
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="15">
+
+                        <Grid ColumnDefinitions="Auto, *, Auto">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnLimbaTapped" />
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Column="0" Source="language.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="{x:Static strings:AppResources.LanguageTitle}" FontSize="16" FontFamily="Lora" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center" Margin="15,0,0,0" />
+                            <Label Grid.Column="2" Text="➔" FontSize="18" TextColor="Black" VerticalOptions="Center" />
+                        </Grid>
+
+                        <BoxView HeightRequest="1" Color="#EEEEEE" />
+
+                        <Grid ColumnDefinitions="Auto, *, Auto">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDeconectareTapped" />
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Column="0" Source="info.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="{x:Static strings:AppResources.LogoutBtn}" FontSize="16" FontFamily="Lora" FontAttributes="Bold" TextColor="#FF3B30" VerticalOptions="Center" Margin="15,0,0,0" />
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

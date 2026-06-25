@@ -1,39 +1,38 @@
-﻿using SQLite;
-using SQLiteNetExtensions.Attributes;
+﻿using Newtonsoft.Json;
+using Postgrest.Attributes;
+using Postgrest.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace SalonBookingApp.Models
 {
-    public class Appointment
+    [Table("Appointment")]
+    public class Appointment : BaseModel
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey("ID", false)]
         public int ID { get; set; }
 
-        [DataType(DataType.DateTime)]
-        [Display(Name = "Data și Ora Programării")]
+        [Column("AppointmentDate")]
         public DateTime AppointmentDate { get; set; }
 
-       
-        [ForeignKey(typeof(Client))]
+        [Column("ClientID")]
         public int ClientID { get; set; }
 
-        [ManyToOne]
-        public Client Client { get; set; }
-
-        
-        [ForeignKey(typeof(Stylist))]
+        [Column("StylistID")]
         public int StylistID { get; set; }
 
-        [ManyToOne]
+        [Column("ServiceID")]
+        public int ServiceID { get; set; }
+
+        [JsonIgnore]
+        public Client Client { get; set; }
+
+        [JsonIgnore]
         public Stylist Stylist { get; set; }
 
-        [ForeignKey(typeof(Service))]
-        public int ServiceID { get; set; }  
-
-        [ManyToOne]
+        [JsonIgnore]
         public Service Service { get; set; }
+
+        [JsonIgnore]
+        public string ClientNameDisplay { get; set; }
     }
 }

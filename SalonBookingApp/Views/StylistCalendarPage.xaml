@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
+             x:Class="SalonBookingApp.Views.StylistCalendarPage"
+             BackgroundColor="#FFFFFF"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto, *">
+
+        <VerticalStackLayout Grid.Row="0" BackgroundColor="#FFF0F2" Padding="0,20,0,15" Spacing="15">
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                <Grid>
+                    <Label x:Name="LabelLunaAn" FontSize="22" TextColor="#000000" FontAttributes="Bold" FontFamily="Lora" VerticalOptions="Center"/>
+                    <Picker x:Name="PickerLuni" Opacity="0" SelectedIndexChanged="OnMonthPickerChanged" FontFamily="Lora"/>
+                </Grid>
+                <Label Text="▼" FontSize="12" TextColor="#8E8E93" VerticalOptions="Center" Margin="0,5,0,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnHeaderTapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnHeaderTapped"/>
+                </HorizontalStackLayout.GestureRecognizers>
+            </HorizontalStackLayout>
+
+            <CollectionView x:Name="ListaZile" HeightRequest="80" SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="8" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.Header>
+                    <Grid WidthRequest="15"/>
+                </CollectionView.Header>
+                <CollectionView.Footer>
+                    <Grid WidthRequest="15"/>
+                </CollectionView.Footer>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border WidthRequest="55" BackgroundColor="{Binding BackgroundColor}" StrokeThickness="0">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnZiTapped"/>
+                            </Border.GestureRecognizers>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="2">
+                                <Label Text="{Binding NumeZi}" FontSize="14" TextColor="{Binding TextColor}" FontFamily="Lora" HorizontalOptions="Center"/>
+                                <Label Text="{Binding NumarZi}" FontSize="20" FontAttributes="Bold" TextColor="{Binding TextColor}" FontFamily="Lora" HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <CollectionView x:Name="ListaStilisti" HeightRequest="55" SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="15" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.Header>
+                    <Grid WidthRequest="20"/>
+                </CollectionView.Header>
+                <CollectionView.Footer>
+                    <Grid WidthRequest="20"/>
+                </CollectionView.Footer>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout VerticalOptions="Center" Spacing="5">
+                            <VerticalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnStilistTapped"/>
+                            </VerticalStackLayout.GestureRecognizers>
+                            <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                                <Border WidthRequest="32" HeightRequest="32" StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="16"/>
+                                    </Border.StrokeShape>
+                                    <Image Source="{Binding PozaPath}" Aspect="AspectFill"/>
+                                </Border>
+                                <Label Text="{Binding Stilist.FirstName}" FontSize="16" TextColor="{Binding TextColor}" FontAttributes="{Binding FontStyle}" FontFamily="Lora" VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+                            <BoxView HeightRequest="3" Color="#EAB8C1" WidthRequest="40" HorizontalOptions="Center" CornerRadius="1.5" IsVisible="{Binding IsSelected}"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+
+        <ScrollView Grid.Row="1" Margin="10,15,10,0" VerticalScrollBarVisibility="Never">
+            <Grid x:Name="TimelineGrid" ColumnDefinitions="60, *" Padding="0,0,0,20">
+            </Grid>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

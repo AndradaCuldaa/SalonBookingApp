@@ -1,63 +1,68 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
              x:Class="SalonBookingApp.Views.RegisterPage"
-             Title="RegisterPage"
-             BackgroundColor="White">
-    <ScrollView>
-        <StackLayout Padding="30" Spacing="15" VerticalOptions="Center">
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
 
-            <Label Text="Creează un cont nou"
-                   FontSize="24"
-                   TextColor="#3F51B5"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   Margin="0,0,0,20" />
+    <Grid>
+        <Image Source="salon.jpeg" Aspect="AspectFill"  InputTransparent="True"/>
 
-            <Entry x:Name="EntryNume"
-                   Placeholder="Nume"
-                   PlaceholderColor="Gray"
-                   TextColor="Black" />
+        <ScrollView VerticalOptions="Center">
+            <VerticalStackLayout Margin="30,20">
+                <Border BackgroundColor="White" Padding="25" StrokeThickness="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="30" />
+                    </Border.StrokeShape>
 
-            <Entry x:Name="EntryPrenume"
-                   Placeholder="Prenume"
-                   PlaceholderColor="Gray"
-                   TextColor="Black" />
-            <Label Text="Număr de Telefon" TextColor="Gray" />
-            <Entry x:Name="EntryPhone" 
-                    Placeholder="Telefon (ex: 07xx xxx xxx)" 
-                    Keyboard="Telephone" 
-                    TextColor="Black" />
+                    <VerticalStackLayout Spacing="15">
+                        <Grid ColumnDefinitions="*, *" ColumnSpacing="10" Margin="0,0,0,10">
+                            <Button Text="{x:Static strings:AppResources.LoginTitle}" Grid.Column="0" 
+                                    Clicked="OnBackToLoginClicked"
+                                    CornerRadius="15" HeightRequest="45"
+                                    BackgroundColor="Transparent" TextColor="Gray"
+                                    FontFamily="Lora"/>
 
-            <Entry x:Name="EntryUsername"
-                   Placeholder="Nume de utilizator"
-                   PlaceholderColor="Gray"
-                   TextColor="Black" />
+                            <Button Text="{x:Static strings:AppResources.SignUpTitle}" Grid.Column="1" 
+                                    BackgroundColor="#EAB8C1" TextColor="White"
+                                    CornerRadius="15" HeightRequest="45"
+                                    FontFamily="Lora"/>
+                        </Grid>
 
-            <Entry x:Name="EntryEmail"
-                   Placeholder="Email"
-                   Keyboard="Email"
-                   PlaceholderColor="Gray"
-                   TextColor="Black" />
+                        <Entry x:Name="EntryLastName" 
+                               Placeholder="{x:Static strings:AppResources.LastNamePlaceholder}" 
+                               PlaceholderColor="Gray" TextColor="Black" HeightRequest="45"/>
 
-            <Entry x:Name="EntryPassword"
-                   Placeholder="Parola (minim 8 caractere)"
-                   IsPassword="True"
-                   PlaceholderColor="Gray"
-                   TextColor="Black" />
+                        <Entry x:Name="EntryFirstName" 
+                               Placeholder="{x:Static strings:AppResources.FirstNamePlaceholder}" 
+                               PlaceholderColor="Gray" TextColor="Black" HeightRequest="45"/>
 
-            <Button Text="Sign In (Creează Cont)"
-                    Clicked="OnRegisterClicked"
-                    BackgroundColor="#3F51B5"
-                    TextColor="White"
-                    HeightRequest="50"
-                    CornerRadius="10"
-                    Margin="0,20,0,0" />
-            <Button Text="Înapoi la Login" 
-            Clicked="OnBackClicked" 
-            BackgroundColor="Transparent" 
-            TextColor="Gray" />
+                        <Entry x:Name="EntryPhone" 
+                               Placeholder="{x:Static strings:AppResources.PhonePlaceholder}" 
+                               Keyboard="Telephone" TextColor="Black" HeightRequest="45"/>
 
-        </StackLayout>
-    </ScrollView>
+                        <Entry x:Name="EntryUsername" 
+                               Placeholder="{x:Static strings:AppResources.UserPlaceholder}" 
+                               PlaceholderColor="Gray" TextColor="Black" HeightRequest="45"/>
+
+                        <Entry x:Name="EntryEmail" 
+                               Placeholder="{x:Static strings:AppResources.EmailPlaceholder}" 
+                               Keyboard="Email" TextColor="Black" HeightRequest="45"/>
+
+                        <Entry x:Name="EntryPassword" 
+                               Placeholder="{x:Static strings:AppResources.PassPlaceholder}" 
+                               IsPassword="True" TextColor="Black" HeightRequest="45"/>
+
+                        <Button Text="{x:Static strings:AppResources.SignUpTitle}" 
+                                Clicked="OnRegisterClicked"
+                                BackgroundColor="#EAB8C1" TextColor="White"
+                                CornerRadius="20" HeightRequest="50" 
+                                FontAttributes="Bold"
+                                FontFamily="Lora"/>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

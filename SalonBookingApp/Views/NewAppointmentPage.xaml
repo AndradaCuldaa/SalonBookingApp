@@ -1,29 +1,284 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:SalonBookingApp.Resources.Strings"
              x:Class="SalonBookingApp.Views.NewAppointmentPage"
-             Title="Adauga Programare">
-    <ScrollView>
-        <StackLayout Padding="20" Spacing="20">
-            <Label Text="Completează detaliile" FontSize="20" FontAttributes="Bold" TextColor="#3F51B5" HorizontalOptions="Center"/>
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
 
-            <DatePicker x:Name="DatePickerData" MinimumDate="{Binding Source={x:Static sys:DateTime.Today}}" 
-                        xmlns:sys="clr-namespace:System;assembly=mscorlib"/>
-            <TimePicker x:Name="TimePickerOra" />
+    <Grid>
+        <ScrollView>
+            <StackLayout Spacing="0">
+                <Border BackgroundColor="#EAB8C1"
+                        Padding="20,80,20,40" 
+                        Margin="0,0,0,-25"
+                        StrokeThickness="0"
+                        VerticalOptions="Start">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="0,0,80,80" />
+                    </Border.StrokeShape>
 
-            <Label Text="Stilist:" TextColor="Black"/>
-            <Picker x:Name="PickerStilist" Title="Alege stilistul" ItemDisplayBinding="{Binding FullName}" />
+                    <StackLayout Spacing="15">
+                        <Grid ColumnDefinitions="50, *, 50">
+                            <Grid Grid.Column="0" BackgroundColor="Transparent" Padding="0,10,20,10">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnBackClicked" />
+                                </Grid.GestureRecognizers>
+                                <Label Text="←" 
+                                       TextColor="Black" 
+                                       FontSize="28" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       FontAttributes="Bold" />
+                            </Grid>
 
-            <Label Text="{Binding Source={x:Reference PickerServiciu}, Path=SelectedItem.Duration, StringFormat='Durată estimată: {0} minute'}"
-                    TextColor="Gray"
-                    FontSize="12"
-                    IsVisible="{Binding Source={x:Reference PickerServiciu}, Path=SelectedItem, Converter={StaticResource NullToBoolConverter}}" />
-            <Label Text="{Binding Source={x:Reference PickerServiciu}, Path=SelectedItem.Price, StringFormat='Preț: {0} RON'}"
-       TextColor="#2ecc71"
-       FontSize="14"
-       FontAttributes="Bold"
-       IsVisible="{Binding Source={x:Reference PickerServiciu}, Path=SelectedItem, Converter={StaticResource NullToBoolConverter}}" />
+                            <Label Text="{x:Static strings:AppResources.AppointmentTitle}" 
+                                   TextColor="Black" 
+                                   FontSize="22" 
+                                   FontAttributes="Bold" 
+                                   HorizontalOptions="Center" 
+                                   Grid.Column="1" 
+                                   VerticalOptions="Center"
+                                   FontFamily="Lora"/>
+                        </Grid>
 
-        </StackLayout>
-    </ScrollView>
+                        <Label x:Name="LabelLunaAn" 
+                               Text="April 2026 ▼" 
+                               HorizontalOptions="Center" 
+                               TextColor="Black" 
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               Margin="0,5,0,10"
+                               FontFamily="Lora">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnMonthTapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <CollectionView x:Name="CalendarList" 
+                                        HeightRequest="100" 
+                                        SelectionMode="None" 
+                                        HorizontalScrollBarVisibility="Never">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid WidthRequest="65" HeightRequest="90">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnDateTapped" CommandParameter="{Binding .}" />
+                                        </Grid.GestureRecognizers>
+
+                                        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="5" InputTransparent="True">
+                                            <Label Text="{Binding DayName}" TextColor="Black" FontSize="14" HorizontalOptions="Center" Opacity="0.7" FontFamily="Lora"/>
+                                            <Grid HeightRequest="50" WidthRequest="50" HorizontalOptions="Center">
+                                                <Frame CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="Transparent" BorderColor="Transparent">
+                                                    <Frame.Triggers>
+                                                        <DataTrigger TargetType="Frame" Binding="{Binding IsSelected}" Value="True">
+                                                            <Setter Property="BackgroundColor" Value="White" />
+                                                        </DataTrigger>
+                                                    </Frame.Triggers>
+                                                    <Label Text="{Binding DayNumber}" TextColor="Black" FontSize="18" FontAttributes="Bold" 
+                                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontFamily="Lora">
+                                                        <Label.Triggers>
+                                                            <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="True">
+                                                                <Setter Property="TextColor" Value="#EAB8C1" />
+                                                            </DataTrigger>
+                                                        </Label.Triggers>
+                                                    </Label>
+                                                </Frame>
+                                            </Grid>
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </Border>
+
+                <StackLayout Padding="25" Spacing="20" Margin="0,15,0,0">
+
+                    <Label Text="{x:Static strings:AppResources.LabelChooseService}" FontAttributes="Bold" TextColor="Black" FontSize="16" FontFamily="Lora" />
+                    <VerticalStackLayout>
+                        <Frame CornerRadius="12" Padding="15,15" HasShadow="False" BorderColor="#F0F0F0" BackgroundColor="White">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnToggleServiceList" />
+                            </Frame.GestureRecognizers>
+                            <Grid ColumnDefinitions="*, Auto" InputTransparent="True">
+                                <Label x:Name="SelectedServiceLabel" Text="{x:Static strings:AppResources.SelectServicePlaceholder}" TextColor="Gray" FontSize="15" Grid.Column="0" FontFamily="Lora"/>
+                                <Label x:Name="ArrowLabel" Text="▼" TextColor="#EAB8C1" FontSize="12" Grid.Column="1" VerticalOptions="Center"/>
+                            </Grid>
+                        </Frame>
+
+                        <Frame x:Name="ServiceDropdownList" IsVisible="False" Padding="0" Margin="0,5,0,0" HasShadow="True" CornerRadius="12" BorderColor="#F8F8F8" HeightRequest="180">
+                            <CollectionView x:Name="ServicesSelectionList" SelectionMode="None">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Padding="15">
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnServiceTapped" CommandParameter="{Binding .}" />
+                                            </Grid.GestureRecognizers>
+                                            <Grid ColumnDefinitions="*, Auto" InputTransparent="True">
+                                                <Label Text="{Binding DisplayName}" TextColor="Black" FontSize="15" Grid.Column="0" FontFamily="Lora"/>
+                                                <Label Text="{Binding Price, StringFormat='{0} lei'}" TextColor="#EAB8C1" FontAttributes="Bold" Grid.Column="1" FontFamily="Lora"/>
+                                            </Grid>
+                                            <BoxView HeightRequest="1" BackgroundColor="#F5F5F5" VerticalOptions="End" Margin="0,0,0,-15"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <Label Text="{x:Static strings:AppResources.LabelChooseStylist}" FontAttributes="Bold" TextColor="Black" FontSize="16" FontFamily="Lora" />
+                    <CollectionView x:Name="StylistSelectionList" HeightRequest="110" SelectionMode="None">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="15"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid WidthRequest="80" BackgroundColor="Transparent">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnStylistTapped" CommandParameter="{Binding .}" />
+                                    </Grid.GestureRecognizers>
+
+                                    <VerticalStackLayout HorizontalOptions="Center" Spacing="5" InputTransparent="True">
+                                        <Frame CornerRadius="35" HeightRequest="70" WidthRequest="70" Padding="3" HasShadow="False" BackgroundColor="Transparent" BorderColor="Transparent">
+                                            <Frame.Triggers>
+                                                <DataTrigger TargetType="Frame" Binding="{Binding IsSelected}" Value="True">
+                                                    <Setter Property="BackgroundColor" Value="#EAB8C1" />
+                                                </DataTrigger>
+                                            </Frame.Triggers>
+                                            <Frame CornerRadius="32" Padding="0" IsClippedToBounds="True" HasShadow="False" BorderColor="Transparent">
+                                                <Image Source="{Binding ImagePath}" Aspect="AspectFill" BackgroundColor="#F0F0F0" InputTransparent="True"/>
+                                            </Frame>
+                                        </Frame>
+                                        <Label Text="{Binding FirstName}" HorizontalOptions="Center" FontSize="12" TextColor="Black" InputTransparent="True" FontFamily="Lora"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <Label Text="{x:Static strings:AppResources.LabelMorning}" FontAttributes="Bold" TextColor="Black" FontSize="16" FontFamily="Lora"/>
+                    <CollectionView x:Name="MorningSlotsList" HeightRequest="120" SelectionMode="None">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="3" VerticalItemSpacing="10" HorizontalItemSpacing="10"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnSlotTapped" CommandParameter="{Binding .}" />
+                                    </Grid.GestureRecognizers>
+                                    <Frame Padding="12" CornerRadius="12" HasShadow="False" BorderColor="#EAB8C1" BackgroundColor="White" InputTransparent="True">
+                                        <Frame.Triggers>
+                                            <DataTrigger TargetType="Frame" Binding="{Binding IsSelected}" Value="True">
+                                                <Setter Property="BackgroundColor" Value="#EAB8C1" />
+                                            </DataTrigger>
+                                        </Frame.Triggers>
+                                        <Label Text="{Binding TimeDisplay}" HorizontalOptions="Center" FontAttributes="Bold" TextColor="Black" InputTransparent="True" FontFamily="Lora">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="True">
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <Label Text="{x:Static strings:AppResources.LabelAfternoon}" FontAttributes="Bold" TextColor="Black" FontSize="16" Margin="0,10,0,0" FontFamily="Lora"/>
+                    <CollectionView x:Name="AfternoonSlotsList" HeightRequest="220" SelectionMode="None">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="3" VerticalItemSpacing="10" HorizontalItemSpacing="10"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnSlotTapped" CommandParameter="{Binding .}" />
+                                    </Grid.GestureRecognizers>
+                                    <Frame Padding="12" CornerRadius="12" HasShadow="False" BorderColor="#EAB8C1" BackgroundColor="White" InputTransparent="True">
+                                        <Frame.Triggers>
+                                            <DataTrigger TargetType="Frame" Binding="{Binding IsSelected}" Value="True">
+                                                <Setter Property="BackgroundColor" Value="#EAB8C1" />
+                                            </DataTrigger>
+                                        </Frame.Triggers>
+                                        <Label Text="{Binding TimeDisplay}" HorizontalOptions="Center" FontAttributes="Bold" TextColor="Black" InputTransparent="True" FontFamily="Lora">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="True">
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <Button Text="{x:Static strings:AppResources.BookNow}" 
+                            Clicked="OnSaveClicked" 
+                            BackgroundColor="#EAB8C1" 
+                            TextColor="Black" 
+                            FontAttributes="Bold"
+                            CornerRadius="25" 
+                            HeightRequest="55" 
+                            Margin="0,20,0,30"
+                            FontFamily="Lora"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+        <Grid x:Name="MonthPickerOverlay" IsVisible="False" ZIndex="100">
+            <BoxView BackgroundColor="Black" Opacity="0.5">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CloseMonthPicker" />
+                </BoxView.GestureRecognizers>
+            </BoxView>
+
+            <Border BackgroundColor="White"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="300"
+                    Padding="20"
+                    StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="{x:Static strings:AppResources.ChooseMonthTitle}"
+                           FontAttributes="Bold" FontSize="18" TextColor="Black"
+                           HorizontalOptions="Center" FontFamily="Lora"/>
+
+                    <CollectionView x:Name="MonthSelectionList" HeightRequest="250" SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="15">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnSpecificMonthTapped" CommandParameter="{Binding .}" />
+                                    </Grid.GestureRecognizers>
+                                    <Label Text="{Binding DisplayName}" TextColor="Black" FontSize="16" HorizontalOptions="Center" FontFamily="Lora" InputTransparent="True"/>
+                                    <BoxView HeightRequest="1" BackgroundColor="#F0F0F0" VerticalOptions="End" Margin="0,0,0,-15" InputTransparent="True"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <Button Text="{x:Static strings:AppResources.Cancel}"
+                            BackgroundColor="Transparent"
+                            TextColor="#EAB8C1"
+                            FontAttributes="Bold"
+                            Clicked="CloseMonthPicker"
+                            FontFamily="Lora"/>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+    </Grid>
 </ContentPage>

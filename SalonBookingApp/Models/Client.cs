@@ -1,26 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SQLite;
-using SQLiteNetExtensions.Attributes;
+﻿using Newtonsoft.Json;
+using Postgrest.Attributes;
+using Postgrest.Models;
 
 namespace SalonBookingApp.Models
 {
-    public class Client
+    [Table("Client")]
+    public class Client : BaseModel
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey("ID", false)]
         public int ID { get; set; }
 
-        public string FirstName { get; set; } 
+        [Column("FirstName")]
+        public string FirstName { get; set; }
+
+        [Column("LastName")]
         public string LastName { get; set; }
+
+        [Column("Username")]
+        public string Username { get; set; }
+
+        [Column("Email")]
         public string Email { get; set; }
+
+        [Column("Phone")]
         public string Phone { get; set; }
 
-        public string Username { get; set; } 
-        public string Password { get; set; } 
+        [Column("Password")]
+        public string Password { get; set; }
+
+        [Column("IsAdmin")]
         public bool IsAdmin { get; set; }
 
-        [Ignore] 
+        [JsonIgnore]
         public string FullName => $"{FirstName} {LastName}";
     }
 }
