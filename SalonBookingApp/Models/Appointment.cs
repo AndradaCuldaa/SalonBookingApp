@@ -23,7 +23,7 @@ namespace SalonBookingApp.Models
         [ManyToOne]
         public Client Client { get; set; }
 
-        // Legătura cu Stilistul
+        
         [ForeignKey(typeof(Stylist))]
         public int StylistID { get; set; }
 
@@ -31,7 +31,7 @@ namespace SalonBookingApp.Models
         public Stylist Stylist { get; set; }
 
         [ForeignKey(typeof(Service))]
-        public int ServiceID { get; set; }  // <--- Aici salvăm ID-ul serviciului ales
+        public int ServiceID { get; set; }  
 
         [ManyToOne]
         public Service Service { get; set; }

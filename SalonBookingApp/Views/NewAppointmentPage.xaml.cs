@@ -17,7 +17,7 @@ public partial class NewAppointmentPage : ContentPage
         {
             await LocalNotificationCenter.Current.RequestNotificationPermission();
         }
-        // Populăm listele
+        
         PickerStilist.ItemsSource = await App.Database.GetStylistsAsync();
         PickerServiciu.ItemsSource = await App.Database.GetServicesAsync();
     }
@@ -31,15 +31,15 @@ public partial class NewAppointmentPage : ContentPage
         }
 
         var appt = new Appointment();
-        // Setam Clientul logat
+        
         if (App.UserLogat != null) appt.ClientID = App.UserLogat.ID;
 
-        // Setam Data
+       
         var d = DatePickerData.Date;
         var t = TimePickerOra.Time;
         if (d.HasValue && t.HasValue)
         {
-            // Construim data finală folosind .Value.Year, .Value.Month etc.
+            
             appt.AppointmentDate = new DateTime(
                 d.Value.Year,
                 d.Value.Month,
@@ -50,11 +50,11 @@ public partial class NewAppointmentPage : ContentPage
         }
         else
         {
-            // Dacă cumva sunt goale, punem data de acum
+            
             appt.AppointmentDate = DateTime.Now;
         }
 
-        // Setam Relatiile
+        
         var stilist = (Stylist)PickerStilist.SelectedItem;
         var serviciu = (Service)PickerServiciu.SelectedItem;
         appt.StylistID = stilist.ID;
@@ -67,7 +67,7 @@ public partial class NewAppointmentPage : ContentPage
          
             var notifyTime = appt.AppointmentDate.AddDays(-1);
 
-            // Pentru testare/prezentare: dacă programarea este prea curând, punem notificarea la 10 secunde
+            
             if (notifyTime <= DateTime.Now)
             {
                 notifyTime = DateTime.Now.AddSeconds(10);
@@ -88,13 +88,13 @@ public partial class NewAppointmentPage : ContentPage
         }
         catch (Exception ex)
         {
-            // Eroarea de notificare nu trebuie să oprească fluxul aplicației
+            
             System.Diagnostics.Debug.WriteLine($"Eroare notificare: {ex.Message}");
         }
 
         await DisplayAlert("Succes", "Programare creată!", "OK");
 
-        // Ne intoarcem la lista
+        
         await Navigation.PopAsync();
     }
 }

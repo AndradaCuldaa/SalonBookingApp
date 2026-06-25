@@ -11,7 +11,7 @@ public partial class RegisterPage : ContentPage
 	}
     private async void OnRegisterClicked(object sender, EventArgs e)
     {
-        // 1. Validare simplă (să nu fie câmpurile goale)
+        
         if (string.IsNullOrWhiteSpace(EntryNume.Text) ||
             string.IsNullOrWhiteSpace(EntryPrenume.Text) ||
             string.IsNullOrWhiteSpace(EntryPhone.Text) ||
@@ -28,10 +28,9 @@ public partial class RegisterPage : ContentPage
             return;
         }
 
-        // 3. Validare Format Telefon (07xx xxx xxx)
-        // Acest Regex verifică să înceapă cu 07 și să aibă în total 10 cifre
+        
         string telPattern = @"^07\d{8}$";
-        string telefonCurat = EntryPhone.Text.Replace(" ", ""); // Eliminăm spațiile dacă utilizatorul a pus
+        string telefonCurat = EntryPhone.Text.Replace(" ", ""); 
 
         if (!Regex.IsMatch(telefonCurat, telPattern))
         {
@@ -39,7 +38,7 @@ public partial class RegisterPage : ContentPage
             return;
         }
 
-        // Adaugă în OnRegisterClicked:
+        
         string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
         if (!Regex.IsMatch(EntryEmail.Text ?? "", emailPattern))
         {
@@ -49,8 +48,8 @@ public partial class RegisterPage : ContentPage
 
         var noulClient = new Client
         {
-            LastName = EntryNume.Text.Trim(),      // Nume de familie
-            FirstName = EntryPrenume.Text.Trim(),  // Prenume
+            LastName = EntryNume.Text.Trim(),     
+            FirstName = EntryPrenume.Text.Trim(),  
             Email = EntryEmail.Text,
             Phone = telefonCurat,
             Username = EntryUsername.Text,
@@ -58,7 +57,7 @@ public partial class RegisterPage : ContentPage
             IsAdmin = false
         };
 
-        // 3. Salvare în baza de date
+        
         await App.Database.SaveClientAsync(noulClient);
 
         var clienti = await App.Database.GetClientsAsync();
@@ -70,8 +69,8 @@ public partial class RegisterPage : ContentPage
 
             await DisplayAlert("Succes", $"Cont creat cu succes! Bine ai venit, {clientLogat.FirstName}!", "OK");
 
-            // 4. Îl trimitem direct în interfața principală a aplicației
-            // Înlocuim pagina de login/signup cu meniul principal
+            
+            
             Application.Current.MainPage = new AppShell();
         }
     }

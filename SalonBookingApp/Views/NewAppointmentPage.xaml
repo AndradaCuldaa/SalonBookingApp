@@ -23,10 +23,7 @@
        FontSize="14"
        FontAttributes="Bold"
        IsVisible="{Binding Source={x:Reference PickerServiciu}, Path=SelectedItem, Converter={StaticResource NullToBoolConverter}}" />
-            <Picker x:Name="PickerServiciu" Title="Alege serviciul" ItemDisplayBinding="{Binding Name}" />
 
-            <Button Text="Salvează Programarea" Clicked="OnSaveClicked"
-                    BackgroundColor="#3F51B5" TextColor="White" CornerRadius="10"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

@@ -19,30 +19,29 @@ public partial class AppointmentPage : ContentPage
 
     private async Task IncarcaProgramari()
     {
-        // 1. Luăm toate programările din bază
-        // NOTĂ: Trebuie să implementăm o funcție care aduce și datele despre Service/Stylist (relații)
+       
         var toateProgramarile = await App.Database.GetAppointmentsWithChildrenAsync();
 
         if (App.UserLogat.IsAdmin)
         {
-            // Adminul vede tot
+           
             ListaProgramari.ItemsSource = toateProgramarile;
         }
         else
         {
-            // Clientul vede doar ale lui
+            
             var programarileMele = toateProgramarile.Where(p => p.ClientID == App.UserLogat.ID).ToList();
             ListaProgramari.ItemsSource = programarileMele;
         }
     }
 
-    // Butonul care te duce la formularul de creare
+    
     private async void OnNewAppointmentClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new NewAppointmentPage());
     }
 
-    // Butonul mic de Anulare din interiorul dreptunghiului
+    
     private async void OnDeleteClicked(object sender, EventArgs e)
     {
         var button = sender as Button;
@@ -52,7 +51,7 @@ public partial class AppointmentPage : ContentPage
         if (confirm)
         {
             await App.Database.DeleteAppointmentAsync(programare);
-            await IncarcaProgramari(); // Reîmprospătăm lista
+            await IncarcaProgramari(); 
         }
     }
 }

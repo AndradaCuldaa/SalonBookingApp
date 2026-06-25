@@ -74,7 +74,7 @@ namespace SalonBookingApp.Data
             return await _database.DeleteAsync(stylist);
         }
 
-        // --- METODE PENTRU SERVICII ---
+
 
         public async Task<List<Service>> GetServicesAsync()
         {
@@ -101,10 +101,10 @@ namespace SalonBookingApp.Data
         {
             await Init();
 
-            // 1. Luăm lista simplă de programări (fără relații)
+          
             var appointments = await _database.Table<Appointment>().ToListAsync();
 
-            // 2. Pentru fiecare programare, căutăm manual Clientul și Stilistul
+            
             foreach (var a in appointments)
             {
                 if (a.ClientID != 0)
@@ -144,8 +144,7 @@ namespace SalonBookingApp.Data
         }
         public Task<List<Appointment>> GetAppointmentsWithChildrenAsync()
         {
-            // Această funcție "lipește" automat datele despre Client, Stilist și Service
-            // bazat pe ID-urile salvate.
+            
             return _database.GetAllWithChildrenAsync<Appointment>(recursive: true);
         }
 
@@ -156,7 +155,7 @@ namespace SalonBookingApp.Data
             {
                 var officialStylists = new List<Stylist>
         {
-            new Stylist { FirstName = "Ana", LastName = "Popescu", Specialization = "Coafură" },
+            new Stylist { FirstName = "Ana", LastName = "Popescu", Specialization = "Coafură" , Username = "ana", Password = "12345678",},
             new Stylist { FirstName = "Andrei", LastName = "Ionescu", Specialization = "Barber Shop" },
             new Stylist { FirstName = "Elena", LastName = "Vasilescu", Specialization = "Manichiură" },
             new Stylist { FirstName = "Simona", LastName = "Marin", Specialization = "Cosmetică" },
@@ -164,33 +163,33 @@ namespace SalonBookingApp.Data
         };
                 foreach (var s in officialStylists) await _database.InsertAsync(s);
             }
-            // ... restul codului pentru servicii ...
+           
             var existingServices = await _database.Table<Service>().ToListAsync();
             if (existingServices.Count == 0)
             {
                 var officialServices = new List<Service>
         {
-            // 1. Coafură și Coloristică (Durate în minute)
+            
             new Service { Name = "Tuns Damă", Category = "Coafură", Price = 80, Duration = 45 },
             new Service { Name = "Styling", Category = "Coafură", Price = 100, Duration = 60 },
             new Service { Name = "Vopsit clasic", Category = "Coafură", Price = 200, Duration = 120 },
             new Service { Name = "Balayage", Category = "Coafură", Price = 450, Duration = 240 },
             new Service { Name = "Ombre", Category = "Coafură", Price = 400, Duration = 210 },
 
-            // 2. Barber Shop
+            
             new Service { Name = "Tuns bărbați", Category = "Barber Shop", Price = 50, Duration = 30 },
             new Service { Name = "Îngrijirea bărbii", Category = "Barber Shop", Price = 30, Duration = 20 },
 
-            // 3. Manichiură și Pedichiură
+            
             new Service { Name = "Manichiură semipermanentă", Category = "Unghii", Price = 90, Duration = 60 },
             new Service { Name = "Construcție gel", Category = "Unghii", Price = 150, Duration = 120 },
             new Service { Name = "Pedichiură", Category = "Unghii", Price = 100, Duration = 60 },
 
-            // 4. Cosmetică
+            
             new Service { Name = "Tratamente faciale", Category = "Cosmetică", Price = 180, Duration = 90 },
             new Service { Name = "Pensat și vopsit sprâncene", Category = "Cosmetică", Price = 60, Duration = 30 },
 
-            // 5. Machiaj
+            
             new Service { Name = "Machiaj de seară", Category = "Machiaj", Price = 250, Duration = 60 },
             new Service { Name = "Machiaj de mireasă", Category = "Machiaj", Price = 400, Duration = 90 }
         };

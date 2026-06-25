@@ -11,7 +11,7 @@ public partial class AppointmentListPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        // Aici apelam metoda GetAppointmentsAsync pe care ai reparat-o
+       
         listView.ItemsSource = await App.Database.GetAppointmentsAsync();
     }
 

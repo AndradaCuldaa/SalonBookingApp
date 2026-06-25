@@ -11,16 +11,16 @@ namespace SalonBookingApp.Models
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
 
-        public string FirstName { get; set; } // Prenume
+        public string FirstName { get; set; } 
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
 
-        public string Username { get; set; } // Pentru autentificare
-        public string Password { get; set; } // Pentru securitate
+        public string Username { get; set; } 
+        public string Password { get; set; } 
         public bool IsAdmin { get; set; }
 
-        [Ignore] // Această proprietate nu se salvează în DB, se calculează pe loc
+        [Ignore] 
         public string FullName => $"{FirstName} {LastName}";
     }
 }

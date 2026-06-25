@@ -16,12 +16,12 @@ public partial class StylistPage : ContentPage
 
         bool esteAdmin = App.UserLogat != null && App.UserLogat.IsAdmin;
 
-        // 3. Gestionăm butonul de adăugare (+)
+        
         var butonPlus = ToolbarItems.FirstOrDefault(x => x.Text == "+");
 
         if (!esteAdmin)
         {
-            // Dacă e client, scoatem butonul și blocăm selecția
+            
             if (butonPlus != null)
             {
                 ToolbarItems.Remove(butonPlus);
@@ -30,7 +30,7 @@ public partial class StylistPage : ContentPage
         }
         else
         {
-            // Dacă e admin, ne asigurăm că butonul există și activăm selecția
+            
             if (butonPlus == null)
             {
                 var noulButon = new ToolbarItem { Text = "+" };
@@ -55,7 +55,7 @@ public partial class StylistPage : ContentPage
     {
         if (App.UserLogat == null || !App.UserLogat.IsAdmin)
         {
-            listView.SelectedItem = null; // Deselectăm rândul
+            listView.SelectedItem = null; 
             return;
         }
 
