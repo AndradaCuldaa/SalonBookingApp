@@ -15,7 +15,6 @@ public partial class ReviewAppointmentPage : ContentPage
     private Service _service;
     private ClientPackage _pachetActiv;
     private int _packageSlotIndex;
-
     private ClientPackage _pachetNou;
     private bool _esteAchizitiePachet = false;
     private int _pretPachetNou = 0;
@@ -62,11 +61,6 @@ public partial class ReviewAppointmentPage : ContentPage
             LabelMetodaPlataTitlu.Text = AppResources.PackageAppliedTitle;
             LabelMetodaPlataDescriere.Text = AppResources.PackageAppliedDesc;
         }
-        else
-        {
-            LabelTotal.Text = $"{_service.Price} lei";
-        }
-    }
 
     private void IncarcaDateAbonament()
     {
@@ -109,7 +103,6 @@ public partial class ReviewAppointmentPage : ContentPage
                 };
 
                 await App.Database.SaveAppointmentAsync(appt);
-
                 if (_pachetActiv != null)
                 {
                     if (_pachetActiv.PackageType == "Sedinte")
@@ -122,7 +115,6 @@ public partial class ReviewAppointmentPage : ContentPage
                         else if (_packageSlotIndex == 2) _pachetActiv.RemainingService2--;
                         else if (_packageSlotIndex == 3) _pachetActiv.RemainingService3--;
                         else if (_packageSlotIndex == 4) _pachetActiv.RemainingService4--;
-                    }
                     await App.Database.SaveClientPackageAsync(_pachetActiv);
                 }
 
@@ -138,7 +130,6 @@ public partial class ReviewAppointmentPage : ContentPage
                     await LocalNotificationCenter.Current.Show(request);
                 }
                 catch { }
-
                 await ArataNotificareRoz(AppResources.AppointmentSaved);
             }
 
