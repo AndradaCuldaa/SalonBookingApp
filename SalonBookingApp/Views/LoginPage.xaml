@@ -38,12 +38,7 @@
                     <Entry x:Name="EntryLoginPassword" 
                            Placeholder="{x:Static strings:AppResources.PassPlaceholder}" 
                            IsPassword="True" PlaceholderColor="Gray" TextColor="Black" HeightRequest="50" />
-
-                    <Label Text="{x:Static strings:AppResources.ForgotPass}" 
-                           TextColor="Gray" 
-                           HorizontalOptions="Center" FontSize="12" 
-                           FontFamily="Lora"/>
-
+                    
                     <Button Text="{x:Static strings:AppResources.LoginTitle}" 
                             Clicked="OnLoginClicked"
                             BackgroundColor="#EAB8C1" TextColor="White"
